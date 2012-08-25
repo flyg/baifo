@@ -7,7 +7,7 @@
 //
 
 #import "BFViewController.h"
-
+#import "WebAPIClient.h"
 
 #ifndef kWBSDKDemoAppKey
 #define kWBSDKDemoAppKey @"2498986407"
@@ -26,6 +26,8 @@
 @implementation BFViewController
 @synthesize glView;
 @synthesize btnShare;
+@synthesize btnChooseModel;
+@synthesize lblUserCount;
 @synthesize weiBoEngine;
 
 - (void)viewDidLoad
@@ -43,28 +45,36 @@
     [engine setIsUserExclusive:NO];
     self.weiBoEngine = engine;
     [engine release];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^
+    {
+        [WebAPIClient optInDevice];
+        NSString* onlineCount = [[WebAPIClient numberOfOnlineUsers] substringToIndex:10];
+        if (![onlineCount isEqualToString:@""])
+        {
+            dispatch_async(dispatch_get_main_queue(), ^ {
+                [lblUserCount setText:[NSString stringWithFormat:@"当前共有%@人同时在拜佛！", onlineCount ]];
+            });
+        }        
+    });
 }
 
 - (void)viewDidUnload
 {
     [self setGlView:nil];
     [self setBtnShare:nil];
+    [self setLblUserCount:nil];
+    [self setBtnChooseModel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
 }
 
 - (void)dealloc {
     [glView release];
     [btnShare release];
+    [lblUserCount release];
+    [btnChooseModel release];
     [super dealloc];
 }
 
@@ -89,6 +99,9 @@
             [self showEditWeiboContent];
         }
     }
+}
+
+- (IBAction)btnChooseModelTouched:(id)sender {
 }
 
 //set weibo method

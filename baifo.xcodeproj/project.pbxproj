@@ -60,6 +60,8 @@
 		E2C1548B15E8DC5500C48DFE /* WBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1546515E8DC5500C48DFE /* WBUtil.m */; };
 		E2C1548C15E8DC5500C48DFE /* SVGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1546915E8DC5500C48DFE /* SVGeocoder.m */; };
 		E2C1548D15E8DC5500C48DFE /* SVPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1546B15E8DC5500C48DFE /* SVPlacemark.m */; };
+		E2C1549115E90F3C00C48DFE /* WebAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1549015E90F3C00C48DFE /* WebAPIClient.m */; };
+		E2C1549315E9112000C48DFE /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2C1549215E9112000C48DFE /* config.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +150,9 @@
 		E2C1546915E8DC5500C48DFE /* SVGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGeocoder.m; sourceTree = "<group>"; };
 		E2C1546A15E8DC5500C48DFE /* SVPlacemark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPlacemark.h; sourceTree = "<group>"; };
 		E2C1546B15E8DC5500C48DFE /* SVPlacemark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPlacemark.m; sourceTree = "<group>"; };
+		E2C1548F15E90F3C00C48DFE /* WebAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebAPIClient.h; sourceTree = "<group>"; };
+		E2C1549015E90F3C00C48DFE /* WebAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAPIClient.m; sourceTree = "<group>"; };
+		E2C1549215E9112000C48DFE /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +228,8 @@
 				E279F9C515E8D5E600B0C26D /* BFViewController_iPhone.xib */,
 				E279F9C815E8D5E600B0C26D /* BFViewController_iPad.xib */,
 				E279F9B715E8D5E600B0C26D /* Supporting Files */,
+				E2C1548F15E90F3C00C48DFE /* WebAPIClient.h */,
+				E2C1549015E90F3C00C48DFE /* WebAPIClient.m */,
 			);
 			path = baifo;
 			sourceTree = "<group>";
@@ -234,6 +241,7 @@
 				E279F9B915E8D5E600B0C26D /* InfoPlist.strings */,
 				E279F9BC15E8D5E600B0C26D /* main.m */,
 				E279F9BE15E8D5E600B0C26D /* baifo-Prefix.pch */,
+				E2C1549215E9112000C48DFE /* config.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -421,6 +429,7 @@
 				E2C1547B15E8DC5500C48DFE /* delete@2x.png in Resources */,
 				E2C1547C15E8DC5500C48DFE /* logo.png in Resources */,
 				E2C1547D15E8DC5500C48DFE /* logo@2x.png in Resources */,
+				E2C1549315E9112000C48DFE /* config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +464,7 @@
 				E2C1548B15E8DC5500C48DFE /* WBUtil.m in Sources */,
 				E2C1548C15E8DC5500C48DFE /* SVGeocoder.m in Sources */,
 				E2C1548D15E8DC5500C48DFE /* SVPlacemark.m in Sources */,
+				E2C1549115E90F3C00C48DFE /* WebAPIClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

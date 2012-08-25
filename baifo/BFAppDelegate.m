@@ -7,8 +7,8 @@
 //
 
 #import "BFAppDelegate.h"
-
 #import "BFViewController.h"
+#import "WebAPIClient.h"
 
 // CONSTANTS
 #define kAccelerometerFrequency		100.0 // Hz
@@ -19,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [WebAPIClient initGlobal];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -33,6 +35,7 @@
     //Configure and start accelerometer
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / kAccelerometerFrequency)];
 	[[UIAccelerometer sharedAccelerometer] setDelegate:self];
+
 	[glView startAnimation];
     return YES;
 }
