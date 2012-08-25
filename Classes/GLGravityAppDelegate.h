@@ -59,6 +59,8 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet GLGravityView *glView;
+@property (retain, nonatomic) IBOutlet UIButton *buttonShare;
+- (IBAction)buttonSharedTouched:(id)sender;
 
 @end
 

@@ -58,6 +58,7 @@
 
 @synthesize window;
 @synthesize glView;
+@synthesize buttonShare;
 
 - (void) applicationDidFinishLaunching:(UIApplication *)application
 {
@@ -88,6 +89,7 @@
 	[window release];
 	[glView release];
 	
+    [buttonShare release];
 	[super dealloc];
 }
 
@@ -106,4 +108,7 @@
 	[glView setAccel:accel];
 }
 
+- (IBAction)buttonSharedTouched:(id)sender {
+    [buttonShare setTitle:@"ha" forState:UIControlStateNormal];
+}
 @end
