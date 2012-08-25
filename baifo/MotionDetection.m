@@ -69,7 +69,7 @@ bool IsMotion2Completed()
 void MDInit()
 {
     currentMotion = 0;
-    for (int i=0;i<360;i++)
+    for (int i=0;i<360 / 5;i++)
     {
         buffer[i]=0;
     }
