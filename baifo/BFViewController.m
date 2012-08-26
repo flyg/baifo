@@ -26,7 +26,7 @@
 @implementation BFViewController
 @synthesize glView;
 @synthesize btnShare;
-@synthesize btnChooseModel;
+@synthesize btnSwitchModel;
 @synthesize lblUserCount;
 @synthesize weiBoEngine;
 
@@ -49,6 +49,17 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
     {
+        NSString* configFile = [[NSBundle mainBundle]pathForResource:@"config" ofType:@"plist"];
+        NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithContentsOfFile:configFile];
+        modelIndexMax = [dict objectForKey:@"model_index_max"];
+        
+        NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+        modelIndexCurrent = [defaults objectForKey:@"model_index_current"];
+        if (modelIndexCurrent == nil)
+        {
+            modelIndexCurrent = [NSNumber numberWithInt:0];
+        }
+        
         [WebAPIClient optInDevice];
         NSString* onlineCount = [[WebAPIClient numberOfOnlineUsers] substringToIndex:10];
         if (![onlineCount isEqualToString:@""])
@@ -56,7 +67,7 @@
             dispatch_async(dispatch_get_main_queue(), ^ {
                 [lblUserCount setText:[NSString stringWithFormat:@"当前共有%@人同时在拜佛！", onlineCount ]];
             });
-        }        
+        }
     });
 }
 
@@ -65,7 +76,7 @@
     [self setGlView:nil];
     [self setBtnShare:nil];
     [self setLblUserCount:nil];
-    [self setBtnChooseModel:nil];
+    [self setBtnSwitchModel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -74,7 +85,7 @@
     [glView release];
     [btnShare release];
     [lblUserCount release];
-    [btnChooseModel release];
+    [btnSwitchModel release];
     [super dealloc];
 }
 
@@ -101,7 +112,18 @@
     }
 }
 
-- (IBAction)btnChooseModelTouched:(id)sender {
+- (IBAction)btnSwitchModelTouched:(id)sender
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^
+        {
+            modelIndexCurrent=[NSNumber numberWithInt:([modelIndexCurrent intValue]+1)%[modelIndexMax intValue]];
+            [glView switchModel:[modelIndexCurrent intValue]];
+            
+            NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+            [defaults setObject:modelIndexCurrent forKey:@"model_index_current"];
+        });  
+
 }
 
 //set weibo method
@@ -225,4 +247,5 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 //end of weibo method
+
 @end

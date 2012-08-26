@@ -79,7 +79,6 @@
 		E279F9C315E8D5E600B0C26D /* BFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFViewController.m; sourceTree = "<group>"; };
 		E279F9C615E8D5E600B0C26D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BFViewController_iPhone.xib; sourceTree = "<group>"; };
 		E279F9C915E8D5E600B0C26D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BFViewController_iPad.xib; sourceTree = "<group>"; };
-		E279F9D015E8D73900B0C26D /* GLESmodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESmodel.h; sourceTree = "<group>"; };
 		E279F9D115E8D73900B0C26D /* GLGravityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGravityView.h; sourceTree = "<group>"; };
 		E279F9D215E8D73900B0C26D /* GLGravityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGravityView.m; sourceTree = "<group>"; };
 		E279F9D315E8D73900B0C26D /* MotionDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionDetection.h; sourceTree = "<group>"; };
@@ -153,6 +152,8 @@
 		E2C1548F15E90F3C00C48DFE /* WebAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebAPIClient.h; sourceTree = "<group>"; };
 		E2C1549015E90F3C00C48DFE /* WebAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAPIClient.m; sourceTree = "<group>"; };
 		E2C1549215E9112000C48DFE /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		E2C4458C15E9C42800240ADC /* GLESmodel1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESmodel1.h; sourceTree = "<group>"; };
+		E2C4458D15E9C42800240ADC /* GLESmodel2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESmodel2.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,7 +217,8 @@
 		E279F9B615E8D5E600B0C26D /* baifo */ = {
 			isa = PBXGroup;
 			children = (
-				E279F9D015E8D73900B0C26D /* GLESmodel.h */,
+				E2C4458C15E9C42800240ADC /* GLESmodel1.h */,
+				E2C4458D15E9C42800240ADC /* GLESmodel2.h */,
 				E279F9D115E8D73900B0C26D /* GLGravityView.h */,
 				E279F9D215E8D73900B0C26D /* GLGravityView.m */,
 				E279F9D315E8D73900B0C26D /* MotionDetection.h */,

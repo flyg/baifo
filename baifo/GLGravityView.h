@@ -33,6 +33,8 @@
     CLLocationManager *lm;
 	
 	UIAccelerationValue	*accel;
+    
+    int modelIndexCurrent;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
@@ -43,5 +45,6 @@
 -(void)startAnimation;
 -(void)stopAnimation;
 -(void)drawView;
+-(void)switchModel:(int)index;
 
 @end

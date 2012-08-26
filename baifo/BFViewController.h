@@ -17,14 +17,16 @@
 {
     WBEngine *weiBoEngine;
     Reachability *internetReachability;
+    NSNumber *modelIndexMax;
+    NSNumber *modelIndexCurrent;
 }
 @property (retain, nonatomic) IBOutlet GLGravityView *glView;
 @property (retain, nonatomic) IBOutlet UIButton *btnShare;
-@property (retain, nonatomic) IBOutlet UIButton *btnChooseModel;
+@property (retain, nonatomic) IBOutlet UIButton *btnSwitchModel;
 @property (retain, nonatomic) IBOutlet UILabel *lblUserCount;
 @property (nonatomic, retain) WBEngine *weiBoEngine;
 
 - (IBAction)btnShareTouched:(id)sender;
-- (IBAction)btnChooseModelTouched:(id)sender;
+- (IBAction)btnSwitchModelTouched:(id)sender;
 
 @end

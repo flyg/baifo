@@ -4,7 +4,8 @@
 #import "GLGravityView.h"
 #import "MotionDetection.h"
 //#import "teapot.h"
-#import "GLESmodel.h"
+#import "GLESmodel1.h"
+#import "GLESmodel2.h"
 
 
 // CONSTANTS
@@ -218,14 +219,31 @@ int flash = 0;
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    
-    // Here's where the data is now
-    glVertexPointer(3, GL_FLOAT,0, vVerts);
-    glNormalPointer(GL_FLOAT, 0, vNorms);
-    glTexCoordPointer(2, GL_FLOAT, 0, vText);
-    
-    // Draw them
-    glDrawElements(GL_TRIANGLES, sizeof(uiIndexes)/sizeof(uiIndexes[0]), GL_UNSIGNED_SHORT, uiIndexes);
+
+    switch(modelIndexCurrent)
+    {
+        default:
+        case 0:
+            // Here's where the data is now
+            glVertexPointer(3, GL_FLOAT,0, vVerts_1);
+            glNormalPointer(GL_FLOAT, 0, vNorms_1);
+            glTexCoordPointer(2, GL_FLOAT, 0, vText_1);
+            
+            // Draw them
+            glDrawElements(GL_TRIANGLES, sizeof(uiIndexes_1)/sizeof(uiIndexes_1[0]), GL_UNSIGNED_SHORT, uiIndexes_1);
+            
+            break;
+        case 1:
+            // Here's where the data is now
+            glVertexPointer(3, GL_FLOAT,0, vVerts_2);
+            glNormalPointer(GL_FLOAT, 0, vNorms_2);
+            glTexCoordPointer(2, GL_FLOAT, 0, vText_2);
+            
+            // Draw them
+            glDrawElements(GL_TRIANGLES, sizeof(uiIndexes_2)/sizeof(uiIndexes_2[0]), GL_UNSIGNED_SHORT, uiIndexes_2);
+            
+            break;
+    }
  
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
@@ -351,6 +369,11 @@ int flash = 0;
 		
 		animating = FALSE;
 	}
+}
+
+-(void)switchModel:(int)index
+{
+    modelIndexCurrent = index;
 }
 
 - (void)dealloc
