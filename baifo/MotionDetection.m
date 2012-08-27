@@ -12,7 +12,8 @@
 
 int currentMotion = 0;
 
-double buffer[360 / 5];
+double bufferMotion[360 / 5];
+double bufferStay[360 / 5];
 
 int lastpDeg;
 int hit;
@@ -27,13 +28,18 @@ void ProcessMotion1(float pitch, float roll, float yaw)
     int pDeg = (int)(pitch * 180 / PI / 5) + 180 / 5;
     if (pDeg !=lastpDeg)
     {
-        buffer[pDeg]++;
-        if (buffer[pDeg]==2)
+        bufferMotion[pDeg]++;
+        if (bufferMotion[pDeg]==2)
         {
             hit++;
         }
     }
     lastpDeg = pDeg;
+    bufferStay[pDeg]++;
+    if (bufferStay[pDeg]>15)
+    {
+        MDInit();
+    }
 }
 
 bool IsMotion1Completed()
@@ -52,13 +58,18 @@ void ProcessMotion2(float pitch, float roll, float yaw)
     int pDeg = (int)(roll * 180 / PI / 5) + 180 / 5;
     if (pDeg !=lastpDeg)
     {
-        buffer[pDeg]++;
-        if (buffer[pDeg]==2)
+        bufferMotion[pDeg]++;
+        if (bufferMotion[pDeg]==2)
         {
             hit++;
         }
     }
     lastpDeg = pDeg;
+    bufferStay[pDeg]++;
+    if (bufferStay[pDeg]>15)
+    {
+        MDInit();
+    }
 }
 
 bool IsMotion2Completed()
@@ -76,27 +87,35 @@ void ProcessMotion3(float pitch, float roll, float yaw)
     int pDeg = (int)(pitch * 180 / PI / 5) + 180 / 5;
     if (pDeg !=lastpDeg)
     {
-        buffer[pDeg]++;
-        if (buffer[pDeg]==2)
+        bufferMotion[pDeg]++;
+        if (bufferMotion[pDeg]==2)
         {
             hit++;
         }
     }
     lastpDeg = pDeg;
+    bufferStay[pDeg]++;
+    if (bufferStay[pDeg]>15)
+    {
+        MDInit();
+    }
 }
 
 bool IsMotion3Completed()
 {
-    NSLog(@"hit = %d", hit);
     return hit >= 30 / 5;
 }
 
 void MDInit()
 {
     currentMotion = 0;
-    for (int i=0;i<360 / 5;i++)
+    for (int i=0;i<360/5;i++)
     {
-        buffer[i]=0;
+        bufferMotion[i]=0;
+    }
+    for (int i=0;i<360/5;i++)
+    {
+        bufferStay[i]=0;
     }
     hit = 0;
     lastpDeg = 0;
@@ -205,6 +224,6 @@ bool MDMotionCompleted()
     if (completed)
     {
         MDInit();
-    }
+    }    
     return completed;
 }
