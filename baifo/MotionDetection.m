@@ -19,7 +19,7 @@ int hit;
 
 bool InMotion1(float pitch, float roll, float yaw)
 {
-    return (-0.2 < roll && roll < 0.2);
+    return (-0.3 < roll && roll < 0.3);
 }
 
 void ProcessMotion1(float pitch, float roll, float yaw)
@@ -44,7 +44,7 @@ bool IsMotion1Completed()
 
 bool InMotion2(float pitch, float roll, float yaw)
 {
-    return (-0.2 < pitch && pitch < 0.2);
+    return (-0.3 < pitch && pitch < 0.3);
 }
 
 void ProcessMotion2(float pitch, float roll, float yaw)
@@ -63,6 +63,31 @@ void ProcessMotion2(float pitch, float roll, float yaw)
 
 bool IsMotion2Completed()
 {
+    return hit >= 30 / 5;
+}
+
+bool InMotion3(float pitch, float roll, float yaw)
+{
+    return ((PI/2-0.3 < roll && roll < PI/2+0.3)||(-PI/2-0.3 < roll && roll < -PI/2+0.3));
+}
+
+void ProcessMotion3(float pitch, float roll, float yaw)
+{
+    int pDeg = (int)(pitch * 180 / PI / 5) + 180 / 5;
+    if (pDeg !=lastpDeg)
+    {
+        buffer[pDeg]++;
+        if (buffer[pDeg]==2)
+        {
+            hit++;
+        }
+    }
+    lastpDeg = pDeg;
+}
+
+bool IsMotion3Completed()
+{
+    NSLog(@"hit = %d", hit);
     return hit >= 30 / 5;
 }
 
@@ -88,6 +113,10 @@ int InMotion(float pitch, float roll, float yaw)
     {
         return 2;
     }
+    else if(InMotion3(pitch, roll, yaw))
+    {
+        return 3;
+    }
     else
     {
         return 0;
@@ -102,6 +131,8 @@ bool IsInMotion(int motion, float pitch, float roll, float yaw)
             return InMotion1(pitch, roll, yaw);
         case 2:
             return InMotion2(pitch, roll, yaw);
+        case 3:
+            return InMotion3(pitch, roll, yaw);
         default:
             return false;
     }
@@ -117,6 +148,8 @@ void ProcessMotion(float pitch, float roll, float yaw)
         case 2:
             ProcessMotion2(pitch, roll, yaw);
             break;
+        case 3:
+            ProcessMotion3(pitch, roll, yaw);
         default:
             break;
     }
@@ -161,6 +194,9 @@ bool MDMotionCompleted()
             break;
         case 2:
             completed = IsMotion2Completed();
+            break;
+        case 3:
+            completed = IsMotion3Completed();
             break;
         default:
             completed = false;
