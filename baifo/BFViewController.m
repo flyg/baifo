@@ -37,7 +37,7 @@
     [glView startAnimation];
     internetReachability = [[Reachability reachabilityForInternetConnection]retain];
     
-    //set weibo
+    // set weibo
     WBEngine *engine = [[WBEngine alloc] initWithAppKey:kWBSDKDemoAppKey appSecret:kWBSDKDemoAppSecret];
     [engine setRootViewController:self];
     [engine setDelegate:self];
@@ -45,6 +45,14 @@
     [engine setIsUserExclusive:NO];
     self.weiBoEngine = engine;
     [engine release];
+    
+    // look for online user count every 2 minutes
+    statusTimer = [NSTimer scheduledTimerWithTimeInterval: 120
+        target: self
+        selector: @selector(handleStatusTimer:)
+        userInfo: nil
+        repeats: YES];
+    [self handleStatusTimer: statusTimer];
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
@@ -59,15 +67,7 @@
         {
             modelIndexCurrent = [NSNumber numberWithInt:0];
         }
-        
-        [WebAPIClient optInDevice];
-        NSString* onlineCount = [[WebAPIClient numberOfOnlineUsers] substringToIndex:10];
-        if (![onlineCount isEqualToString:@""])
-        {
-            dispatch_async(dispatch_get_main_queue(), ^ {
-                [lblUserCount setText:[NSString stringWithFormat:@"当前共有%@人同时在拜佛！", onlineCount ]];
-            });
-        }
+        [glView switchModel:[modelIndexCurrent intValue]];
     });
 }
 
@@ -87,6 +87,24 @@
     [lblUserCount release];
     [btnSwitchModel release];
     [super dealloc];
+}
+
+- (void) handleStatusTimer: (NSTimer *) timer
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^
+    {
+        [WebAPIClient optInDevice];
+        NSString* temp = [WebAPIClient numberOfOnlineUsers];
+        NSString* onlineCount = [temp substringToIndex:10];
+        if (![onlineCount isEqualToString:@""])
+        {
+            dispatch_async(dispatch_get_main_queue(), ^
+            {
+                [lblUserCount setText:[NSString stringWithFormat:@"当前共有%@人同时在拜佛！", onlineCount ]];
+            });
+        }
+    });
 }
 
 - (IBAction)btnShareTouched:(id)sender

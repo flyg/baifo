@@ -1,5 +1,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/EAGLDrawable.h>
+#import <AVFoundation/AVAudioPlayer.h>
 
 #import "GLGravityView.h"
 #import "MotionDetection.h"
@@ -173,6 +174,15 @@ int flash = 0;
         colorB = 0;    
         if (MDMotionCompleted())
         {
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            dispatch_async(queue, ^
+            {
+                NSString *path = [[NSBundle mainBundle] pathForResource:@"emtf" ofType:@"wav"];
+                AVAudioPlayer* theAudio=[[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] error:NULL];
+                theAudio.rate =100;
+                //theAudio.delegate = self;
+                [theAudio play];
+            });
             flash = 6;
         }
     }

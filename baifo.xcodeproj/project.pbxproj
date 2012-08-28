@@ -26,6 +26,8 @@
 		E279F9E215E8D79300B0C26D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E279F9E115E8D79300B0C26D /* QuartzCore.framework */; };
 		E279F9E415E8D79900B0C26D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E279F9E315E8D79900B0C26D /* Security.framework */; };
 		E279F9E615E8D7A100B0C26D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E279F9E515E8D7A100B0C26D /* SystemConfiguration.framework */; };
+		E298D0C815ED057300759B51 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298D0C715ED057300759B51 /* AVFoundation.framework */; };
+		E298D0CB15ED07B700759B51 /* emtf.wav in Resources */ = {isa = PBXBuildFile; fileRef = E298D0CA15ED07B700759B51 /* emtf.wav */; };
 		E2C1546C15E8DC5500C48DFE /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1542C15E8DC5500C48DFE /* JSONKit.m */; };
 		E2C1546D15E8DC5500C48DFE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1542E15E8DC5500C48DFE /* Reachability.m */; };
 		E2C1546E15E8DC5500C48DFE /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1543215E8DC5500C48DFE /* GTMBase64.m */; };
@@ -91,6 +93,8 @@
 		E279F9E115E8D79300B0C26D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E279F9E315E8D79900B0C26D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E279F9E515E8D7A100B0C26D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E298D0C715ED057300759B51 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E298D0CA15ED07B700759B51 /* emtf.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = emtf.wav; sourceTree = "<group>"; };
 		E2C1542B15E8DC5500C48DFE /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		E2C1542C15E8DC5500C48DFE /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		E2C1542D15E8DC5500C48DFE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E298D0C815ED057300759B51 /* AVFoundation.framework in Frameworks */,
 				E279F9B115E8D5E600B0C26D /* UIKit.framework in Frameworks */,
 				E279F9E615E8D7A100B0C26D /* SystemConfiguration.framework in Frameworks */,
 				E279F9E415E8D79900B0C26D /* Security.framework in Frameworks */,
@@ -200,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				E279F9D715E8D75700B0C26D /* AddressBook.framework */,
+				E298D0C715ED057300759B51 /* AVFoundation.framework */,
 				E279F9D915E8D76000B0C26D /* CoreLocation.framework */,
 				E279F9B415E8D5E600B0C26D /* CoreGraphics.framework */,
 				E279F9DB15E8D76700B0C26D /* CoreMotion.framework */,
@@ -217,6 +223,7 @@
 		E279F9B615E8D5E600B0C26D /* baifo */ = {
 			isa = PBXGroup;
 			children = (
+				E298D0CA15ED07B700759B51 /* emtf.wav */,
 				E2C4458C15E9C42800240ADC /* GLESmodel1.h */,
 				E2C4458D15E9C42800240ADC /* GLESmodel2.h */,
 				E279F9D115E8D73900B0C26D /* GLGravityView.h */,
@@ -432,6 +439,7 @@
 				E2C1547C15E8DC5500C48DFE /* logo.png in Resources */,
 				E2C1547D15E8DC5500C48DFE /* logo@2x.png in Resources */,
 				E2C1549315E9112000C48DFE /* config.plist in Resources */,
+				E298D0CB15ED07B700759B51 /* emtf.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

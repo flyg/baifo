@@ -38,7 +38,7 @@ void ProcessMotion1(float pitch, float roll, float yaw)
     bufferStay[pDeg]++;
     if (bufferStay[pDeg]>15)
     {
-        MDInit();
+        MDInit(false);
     }
 }
 
@@ -68,7 +68,7 @@ void ProcessMotion2(float pitch, float roll, float yaw)
     bufferStay[pDeg]++;
     if (bufferStay[pDeg]>15)
     {
-        MDInit();
+        MDInit(false);
     }
 }
 
@@ -79,7 +79,7 @@ bool IsMotion2Completed()
 
 bool InMotion3(float pitch, float roll, float yaw)
 {
-    return ((PI/2-0.3 < roll && roll < PI/2+0.3)||(-PI/2-0.3 < roll && roll < -PI/2+0.3));
+    return ((PI/2-0.4 < roll && roll < PI/2+0.4)||(-PI/2-0.4 < roll && roll < -PI/2+0.4));
 }
 
 void ProcessMotion3(float pitch, float roll, float yaw)
@@ -97,7 +97,7 @@ void ProcessMotion3(float pitch, float roll, float yaw)
     bufferStay[pDeg]++;
     if (bufferStay[pDeg]>15)
     {
-        MDInit();
+        MDInit(false);
     }
 }
 
@@ -106,9 +106,12 @@ bool IsMotion3Completed()
     return hit >= 30 / 5;
 }
 
-void MDInit()
+void MDInit (int cleanCurrentMotion)
 {
-    currentMotion = 0;
+    if (cleanCurrentMotion)
+    {
+        currentMotion = 0;
+    }
     for (int i=0;i<360/5;i++)
     {
         bufferMotion[i]=0;
@@ -193,7 +196,7 @@ void MDProcess(float pitch, float roll, float yaw)
         }
         else
         {
-            MDInit();
+            MDInit(true);
         }
     }
 }
@@ -223,7 +226,7 @@ bool MDMotionCompleted()
     }
     if (completed)
     {
-        MDInit();
+        MDInit(true);
     }    
     return completed;
 }

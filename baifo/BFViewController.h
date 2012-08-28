@@ -15,10 +15,12 @@
 
 @interface BFViewController : UIViewController<WBEngineDelegate, WBSendViewDelegate, WBLogInAlertViewDelegate>
 {
+@private
     WBEngine *weiBoEngine;
     Reachability *internetReachability;
     NSNumber *modelIndexMax;
     NSNumber *modelIndexCurrent;
+    NSTimer *statusTimer;
 }
 @property (retain, nonatomic) IBOutlet GLGravityView *glView;
 @property (retain, nonatomic) IBOutlet UIButton *btnShare;
