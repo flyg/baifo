@@ -8,6 +8,7 @@
 
 #import "BFViewController.h"
 #import "WebAPIClient.h"
+#import "SoundEffect.h"
 
 #ifndef kWBSDKDemoAppKey
 #define kWBSDKDemoAppKey @"2498986407"
@@ -25,8 +26,10 @@
 
 @implementation BFViewController
 @synthesize glView;
-@synthesize btnShare;
 @synthesize btnSwitchModel;
+@synthesize btnSwitchSound;
+@synthesize btnShare;
+@synthesize btnShowStatus;
 @synthesize lblUserCount;
 @synthesize weiBoEngine;
 
@@ -60,6 +63,7 @@
         NSString* configFile = [[NSBundle mainBundle]pathForResource:@"config" ofType:@"plist"];
         NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithContentsOfFile:configFile];
         modelIndexMax = [dict objectForKey:@"model_index_max"];
+        soundIndexMax = [dict objectForKey:@"sound_index_max"];
         
         NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
         modelIndexCurrent = [defaults objectForKey:@"model_index_current"];
@@ -68,24 +72,34 @@
             modelIndexCurrent = [NSNumber numberWithInt:0];
         }
         [glView switchModel:[modelIndexCurrent intValue]];
+        soundIndexCurrent = [defaults objectForKey:@"sound_index_current"];
+        if (soundIndexCurrent == nil)
+        {
+            soundIndexCurrent = [NSNumber numberWithInt:0];
+        }
+        [SoundEffect switchSound:[soundIndexCurrent intValue]];
     });
 }
 
 - (void)viewDidUnload
 {
     [self setGlView:nil];
-    [self setBtnShare:nil];
-    [self setLblUserCount:nil];
     [self setBtnSwitchModel:nil];
+    [self setBtnSwitchSound:nil];
+    [self setBtnShare:nil];
+    [self setBtnShowStatus:nil];
+    [self setLblUserCount:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
 
 - (void)dealloc {
     [glView release];
-    [btnShare release];
-    [lblUserCount release];
     [btnSwitchModel release];
+    [btnSwitchSound release];
+    [btnShare release];
+    [btnShowStatus release];
+    [lblUserCount release];
     [super dealloc];
 }
 
@@ -105,6 +119,9 @@
             });
         }
     });
+}
+
+- (IBAction)btnShowStatusTouched:(id)sender {
 }
 
 - (IBAction)btnShareTouched:(id)sender
@@ -134,14 +151,25 @@
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
-        {
-            modelIndexCurrent=[NSNumber numberWithInt:([modelIndexCurrent intValue]+1)%[modelIndexMax intValue]];
-            [glView switchModel:[modelIndexCurrent intValue]];
-            
-            NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-            [defaults setObject:modelIndexCurrent forKey:@"model_index_current"];
-        });  
+    {
+        modelIndexCurrent=[NSNumber numberWithInt:([modelIndexCurrent intValue]+1)%[modelIndexMax intValue]];
+        [glView switchModel:[modelIndexCurrent intValue]];
+        NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+        [defaults setObject:modelIndexCurrent forKey:@"model_index_current"];
+    });
+}
 
+- (IBAction)btnSwitchSoundTouched:(id)sender
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^
+    {
+        soundIndexCurrent=[NSNumber numberWithInt:([soundIndexCurrent intValue]+1)%[soundIndexMax intValue]];
+        [SoundEffect switchSound:[soundIndexCurrent intValue]];
+        [SoundEffect playSound];
+        NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+        [defaults setObject:soundIndexCurrent forKey:@"sound_index_current"];
+    });
 }
 
 //set weibo method

@@ -35,6 +35,7 @@
 	UIAccelerationValue	*accel;
     
     int modelIndexCurrent;
+
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
