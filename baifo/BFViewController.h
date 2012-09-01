@@ -25,16 +25,23 @@
     NSTimer *statusTimer;
 }
 @property (retain, nonatomic) IBOutlet GLGravityView *glView;
-@property (retain, nonatomic) IBOutlet UIButton *btnSwitchModel;
-@property (retain, nonatomic) IBOutlet UIButton *btnSwitchSound;
-@property (retain, nonatomic) IBOutlet UIButton *btnShare;
-@property (retain, nonatomic) IBOutlet UIButton *btnShowStatus;
+@property (retain, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *btnSwitchModel;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *btnSwitchSound;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *btnShare;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *btnShowStatus;
 @property (retain, nonatomic) IBOutlet UILabel *lblUserCount;
 @property (nonatomic, retain) WBEngine *weiBoEngine;
+@property (retain, nonatomic) IBOutlet UIView *statusView;
+@property (retain, nonatomic) IBOutlet UINavigationBar *statusViewNavBar;
+@property (retain, nonatomic) IBOutlet UINavigationItem *statusViewNavItem;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *statusViewNavCloseButton;
+
 
 - (IBAction)btnSwitchModelTouched:(id)sender;
 - (IBAction)btnSwitchSoundTouched:(id)sender;
 - (IBAction)btnShareTouched:(id)sender;
 - (IBAction)btnShowStatusTouched:(id)sender;
+- (IBAction)btnCloseStatusView:(id)sender;
 
 @end

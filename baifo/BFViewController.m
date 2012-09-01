@@ -26,6 +26,7 @@
 
 @implementation BFViewController
 @synthesize glView;
+@synthesize toolBar;
 @synthesize btnSwitchModel;
 @synthesize btnSwitchSound;
 @synthesize btnShare;
@@ -33,12 +34,19 @@
 @synthesize lblUserCount;
 @synthesize weiBoEngine;
 
+@synthesize statusView;
+@synthesize statusViewNavBar;
+@synthesize statusViewNavItem;
+@synthesize statusViewNavCloseButton;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [glView startAnimation];
     internetReachability = [[Reachability reachabilityForInternetConnection]retain];
+    statusViewNavItem.backBarButtonItem.enabled=true;
+    statusViewNavCloseButton.enabled=true;
     
     // set weibo
     WBEngine *engine = [[WBEngine alloc] initWithAppKey:kWBSDKDemoAppKey appSecret:kWBSDKDemoAppSecret];
@@ -89,6 +97,11 @@
     [self setBtnShare:nil];
     [self setBtnShowStatus:nil];
     [self setLblUserCount:nil];
+    [self setStatusView:nil];
+    [self setStatusViewNavBar:nil];
+    [self setStatusViewNavItem:nil];
+    [self setStatusViewNavCloseButton:nil];
+    [self setToolBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -100,6 +113,11 @@
     [btnShare release];
     [btnShowStatus release];
     [lblUserCount release];
+    [statusView release];
+    [statusViewNavBar release];
+    [statusViewNavItem release];
+    [statusViewNavCloseButton release];
+    [toolBar release];
     [super dealloc];
 }
 
@@ -121,7 +139,9 @@
     });
 }
 
-- (IBAction)btnShowStatusTouched:(id)sender {
+- (IBAction)btnShowStatusTouched:(id)sender
+{
+    statusView.hidden = false;
 }
 
 - (IBAction)btnShareTouched:(id)sender
@@ -145,6 +165,11 @@
             [self showEditWeiboContent];
         }
     }
+}
+
+- (IBAction)btnCloseStatusView:(id)sender
+{
+    statusView.hidden = true;
 }
 
 - (IBAction)btnSwitchModelTouched:(id)sender
