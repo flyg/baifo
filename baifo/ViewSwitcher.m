@@ -30,8 +30,14 @@ UINavigationController* g_navigationController;
     g_navigationController = [[UINavigationController alloc]initWithRootViewController:g_bfViewController];
     g_navigationController.navigationBarHidden = YES;
     
-    g_mainWindow.rootViewController = [BFAppData isFirstRun]?g_introViewController:g_bfViewController;
-    
+    if([BFAppData isFirstRun])
+    {
+        [ViewSwitcher switchToIntroView];
+    }
+    else
+    {
+        [ViewSwitcher switchToBFView];
+    }
     
     [g_mainWindow makeKeyAndVisible];    
 }
@@ -48,6 +54,7 @@ UINavigationController* g_navigationController;
 
 +(void)switchToBFView
 {
+    [g_bfViewController.glView startAnimation];
     g_mainWindow.rootViewController = g_bfViewController;
 }
 
@@ -55,6 +62,7 @@ UINavigationController* g_navigationController;
 +(void)switchToIntroView
 {
     g_mainWindow.rootViewController = g_introViewController;
+    [g_bfViewController.glView stopAnimation];
 }
 
 

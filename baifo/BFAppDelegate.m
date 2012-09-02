@@ -32,7 +32,6 @@
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / kAccelerometerFrequency)];
 	[[UIAccelerometer sharedAccelerometer] setDelegate:self];
 
-	[glView startAnimation];
     return YES;
 }
 
