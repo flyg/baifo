@@ -18,16 +18,17 @@
 @private
     WBEngine *weiBoEngine;
     Reachability *internetReachability;
-    NSNumber *modelIndexMax;
-    NSNumber *soundIndexMax;
-    NSNumber *modelIndexCurrent;
-    NSNumber *soundIndexCurrent;
+    int modelIndexMax;
+    int soundIndexMax;
+    int modelIndexCurrent;
+    int soundIndexCurrent;
     NSTimer *statusTimer;
 }
 @property (retain, nonatomic) IBOutlet GLGravityView *glView;
 @property (retain, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *btnSwitchModel;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *btnSwitchSound;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *btnHelp;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *btnShare;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *btnShowStatus;
 @property (retain, nonatomic) IBOutlet UILabel *lblUserCount;
@@ -40,6 +41,7 @@
 
 - (IBAction)btnSwitchModelTouched:(id)sender;
 - (IBAction)btnSwitchSoundTouched:(id)sender;
+- (IBAction)btnHelpTouched:(id)sender;
 - (IBAction)btnShareTouched:(id)sender;
 - (IBAction)btnShowStatusTouched:(id)sender;
 - (IBAction)btnCloseStatusView:(id)sender;

@@ -9,6 +9,8 @@
 #import "BFAppDelegate.h"
 #import "BFViewController.h"
 #import "WebAPIClient.h"
+#import "ViewSwitcher.h"
+#import "BFAppData.h"
 
 // CONSTANTS
 #define kAccelerometerFrequency		100.0 // Hz
@@ -21,16 +23,10 @@
 {
     [WebAPIClient initGlobal];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[BFViewController alloc] initWithNibName:@"BFViewController_iPhone" bundle:nil];
-    } else {
-        self.viewController = [[BFViewController alloc] initWithNibName:@"BFViewController_iPad" bundle:nil];
-    }
-    self.window.rootViewController = self.viewController;
-    glView = self.viewController.glView;
-    [self.window makeKeyAndVisible];
+    [BFAppData initGlobal];
+    [ViewSwitcher start];
+
+    glView = [ViewSwitcher bfViewController].glView;
     
     //Configure and start accelerometer
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / kAccelerometerFrequency)];

@@ -47,7 +47,7 @@
 								<string key="NSFrameSize">{260, 44}</string>
 								<reference key="NSSuperview" ref="27705895"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="719735504"/>
+								<reference key="NSNextKeyView" ref="121268112"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -78,7 +78,7 @@
 								<string key="NSFrame">{{16, 81}, {228, 224}}</string>
 								<reference key="NSSuperview" ref="27705895"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="719735504"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIAutoresizesSubviews">NO</bool>
@@ -128,7 +128,6 @@
 						<string key="NSFrame">{{0, 416}, {320, 44}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="121268112"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -150,6 +149,12 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<reference key="IBUIToolbar" ref="719735504"/>
 								<int key="IBUISystemItemIdentifier">5</int>
+							</object>
+							<object class="IBUIBarButtonItem" id="125171774">
+								<string key="IBUITitle">帮助</string>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIStyle">1</int>
+								<reference key="IBUIToolbar" ref="719735504"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="659934060">
 								<string key="IBUITitle">微博</string>
@@ -265,6 +270,14 @@
 					<int key="connectionID">13</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnHelp</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="125171774"/>
+					</object>
+					<int key="connectionID">96</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">btnSwitchModelTouched:</string>
 						<reference key="source" ref="640370789"/>
@@ -303,6 +316,14 @@
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">94</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">btnHelpTouched:</string>
+						<reference key="source" ref="125171774"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">97</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -351,6 +372,7 @@
 							<reference ref="659934060"/>
 							<reference ref="551281642"/>
 							<reference ref="312216231"/>
+							<reference ref="125171774"/>
 						</array>
 						<reference key="parent" ref="774585933"/>
 					</object>
@@ -409,6 +431,11 @@
 						<reference key="object" ref="121268112"/>
 						<reference key="parent" ref="27705895"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">95</int>
+						<reference key="object" ref="125171774"/>
+						<reference key="parent" ref="719735504"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -430,12 +457,13 @@
 				<string key="90.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="91.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="92.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="95.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">94</int>
+			<int key="maxID">97</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -444,6 +472,7 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="btnCloseStatusView:">id</string>
+						<string key="btnHelpTouched:">id</string>
 						<string key="btnShareTouched:">id</string>
 						<string key="btnShowStatusTouched:">id</string>
 						<string key="btnSwitchModelTouched:">id</string>
@@ -452,6 +481,10 @@
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="btnCloseStatusView:">
 							<string key="name">btnCloseStatusView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="btnHelpTouched:">
+							<string key="name">btnHelpTouched:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="btnShareTouched:">
@@ -472,6 +505,7 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="btnHelp">UIBarButtonItem</string>
 						<string key="btnShare">UIBarButtonItem</string>
 						<string key="btnShowStatus">UIBarButtonItem</string>
 						<string key="btnSwitchModel">UIBarButtonItem</string>
@@ -485,6 +519,10 @@
 						<string key="toolBar">UIToolbar</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="btnHelp">
+							<string key="name">btnHelp</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="btnShare">
 							<string key="name">btnShare</string>
 							<string key="candidateClassName">UIBarButtonItem</string>

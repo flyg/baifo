@@ -16,10 +16,6 @@
     UIAccelerationValue accel[3];
 }
 
-@property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) BFViewController *viewController;
-
 @property (strong, nonatomic) GLGravityView *glView;
 
 @end

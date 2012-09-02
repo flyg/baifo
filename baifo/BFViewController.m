@@ -9,6 +9,8 @@
 #import "BFViewController.h"
 #import "WebAPIClient.h"
 #import "SoundEffect.h"
+#import "BFAppData.h"
+#import "ViewSwitcher.h"
 
 #ifndef kWBSDKDemoAppKey
 #define kWBSDKDemoAppKey @"2498986407"
@@ -29,6 +31,7 @@
 @synthesize toolBar;
 @synthesize btnSwitchModel;
 @synthesize btnSwitchSound;
+@synthesize btnHelp;
 @synthesize btnShare;
 @synthesize btnShowStatus;
 @synthesize lblUserCount;
@@ -39,9 +42,19 @@
 @synthesize statusViewNavItem;
 @synthesize statusViewNavCloseButton;
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [BFAppData removeIsFirstRunFlag];
 	// Do any additional setup after loading the view, typically from a nib.
     [glView startAnimation];
     internetReachability = [[Reachability reachabilityForInternetConnection]retain];
@@ -68,24 +81,12 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
     {
-        NSString* configFile = [[NSBundle mainBundle]pathForResource:@"config" ofType:@"plist"];
-        NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithContentsOfFile:configFile];
-        modelIndexMax = [dict objectForKey:@"model_index_max"];
-        soundIndexMax = [dict objectForKey:@"sound_index_max"];
-        
-        NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-        modelIndexCurrent = [defaults objectForKey:@"model_index_current"];
-        if (modelIndexCurrent == nil)
-        {
-            modelIndexCurrent = [NSNumber numberWithInt:0];
-        }
-        [glView switchModel:[modelIndexCurrent intValue]];
-        soundIndexCurrent = [defaults objectForKey:@"sound_index_current"];
-        if (soundIndexCurrent == nil)
-        {
-            soundIndexCurrent = [NSNumber numberWithInt:0];
-        }
-        [SoundEffect switchSound:[soundIndexCurrent intValue]];
+        modelIndexMax = [BFAppData modelIndexMax];
+        soundIndexMax = [BFAppData soundIndexMax];
+        modelIndexCurrent = [BFAppData modelIndexCurrent];
+        [glView switchModel:modelIndexCurrent];
+        soundIndexCurrent = [BFAppData soundIndexCurrent];
+        [SoundEffect switchSound:soundIndexCurrent];
     });
 }
 
@@ -102,6 +103,7 @@
     [self setStatusViewNavItem:nil];
     [self setStatusViewNavCloseButton:nil];
     [self setToolBar:nil];
+    [self setBtnHelp:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -118,6 +120,7 @@
     [statusViewNavItem release];
     [statusViewNavCloseButton release];
     [toolBar release];
+    [btnHelp release];
     [super dealloc];
 }
 
@@ -177,10 +180,9 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
     {
-        modelIndexCurrent=[NSNumber numberWithInt:([modelIndexCurrent intValue]+1)%[modelIndexMax intValue]];
-        [glView switchModel:[modelIndexCurrent intValue]];
-        NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-        [defaults setObject:modelIndexCurrent forKey:@"model_index_current"];
+        modelIndexCurrent = (modelIndexCurrent + 1) % modelIndexMax;
+        [glView switchModel:modelIndexCurrent];
+        [BFAppData setModelIndexCurrent:modelIndexCurrent];
     });
 }
 
@@ -189,12 +191,16 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
     {
-        soundIndexCurrent=[NSNumber numberWithInt:([soundIndexCurrent intValue]+1)%[soundIndexMax intValue]];
-        [SoundEffect switchSound:[soundIndexCurrent intValue]];
+        soundIndexCurrent = (soundIndexCurrent + 1) % soundIndexMax;
+        [SoundEffect switchSound:soundIndexCurrent];
         [SoundEffect playSound];
-        NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-        [defaults setObject:soundIndexCurrent forKey:@"sound_index_current"];
+        [BFAppData setSoundIndexCurrent:soundIndexCurrent];
     });
+}
+
+- (IBAction)btnHelpTouched:(id)sender
+{
+    [ViewSwitcher switchToIntroView];
 }
 
 //set weibo method
