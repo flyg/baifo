@@ -80,6 +80,8 @@
 	return self;
 }
 
+GLuint spriteTexture;
+
 	
 -(void)setupView
 {
@@ -111,10 +113,16 @@
 	//Configure OpenGL arrays
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	//glVertexPointer(3 ,GL_FLOAT, 0, fo_vertices);
 	//glNormalPointer(GL_FLOAT, 0, fo_normals);
 	glEnable(GL_NORMALIZE);
-
+    glEnable(GL_TEXTURE_2D);
+    // Set a blending function to use
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    // Enable blending
+    glEnable(GL_BLEND);
+    
 	//Set the OpenGL projection matrix
 	glMatrixMode(GL_PROJECTION);
 	size = zNear * tanf(DEGREES_TO_RADIANS(fieldOfView) / 2.0);
@@ -124,11 +132,76 @@
 	
 	//Make the OpenGL modelview matrix the default
 	glMatrixMode(GL_MODELVIEW);
+    
+    
+    CGImageRef spriteImage;
+	CGContextRef spriteContext;
+	GLubyte *spriteData;
+    size_t	width, height;
+    // Sets up matrices and transforms for OpenGL ES
+	//glViewport(0, 0, backingWidth, backingHeight);
+	//glMatrixMode(GL_PROJECTION);
+	//glLoadIdentity();
+	//glOrthof(-1.0f, 1.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+	//glMatrixMode(GL_MODELVIEW);
+	
+	// Clears the view with black
+	//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	
+    // Creates a Core Graphics image from an image file
+	spriteImage = [UIImage imageNamed:@"background.jpg"].CGImage;
+    width = CGImageGetWidth(spriteImage);
+	height = CGImageGetHeight(spriteImage);
+    if(spriteImage) {
+		// Allocated memory needed for the bitmap context
+		spriteData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte));
+		// Uses the bitmap creation function provided by the Core Graphics framework.
+		spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width * 4, CGImageGetColorSpace(spriteImage), kCGImageAlphaPremultipliedLast);
+		// After you create the context, you can draw the sprite image to the context.
+		CGContextDrawImage(spriteContext, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), spriteImage);
+		// You don't need the context at this point, so you need to release it to avoid memory leaks.
+		CGContextRelease(spriteContext);
+        
+		// Use OpenGL ES to generate a name for the texture.
+		glGenTextures(1, &spriteTexture);
+		// Bind the texture name.
+		glBindTexture(GL_TEXTURE_2D, spriteTexture);
+		// Set the texture parameters to use a minifying filter and a linear filer (weighted average)
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		// Specify a 2D texture image, providing the a pointer to the image data in memory
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
+		// Release the image data
+		free(spriteData);
+		
+		// Enable use of the texture
+		glEnable(GL_TEXTURE_2D);
+	}
 }
 
 
 float t = 0;
 int flash = 0;
+const GLfloat xBG = 1.16;
+const GLfloat yBG = 1.68;
+
+const GLfloat squareVertices[] = {
+    -xBG, -yBG, -2.0f,
+    xBG, -yBG, -2.0f,
+    -xBG, yBG, -2.0f,
+    xBG, yBG, -2.0f,
+};
+const GLfloat squareNormals[] = {
+    0.0f, 0.0f, +1.0f,
+    0.0f, 0.0f, +1.0f,
+    0.0f, 0.0f, +1.0f,
+    0.0f, 0.0f, +1.0f,
+};
+const GLfloat squareTextures[] = {
+    0.0f, 1.0f,
+    1.0f, 1.0f,
+    0.0f, 0.0f,
+    1.0f, 0.0f,
+};
 
 // Updates the OpenGL view
 - (void)drawView
@@ -195,8 +268,22 @@ int flash = 0;
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 	glClearColor(colorR, colorG, colorB, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    
+    //draw background
+    glLoadIdentity();
+    
+	glScalef(kTeapotScale, kTeapotScale, kTeapotScale);
+    // Here's where the data is now
+    glVertexPointer(3, GL_FLOAT,0, squareVertices);
+    glNormalPointer(GL_FLOAT, 0, squareNormals);
+    glTexCoordPointer(2, GL_FLOAT, 0, squareTextures);
+    glBindTexture(GL_TEXTURE_2D, spriteTexture);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    
 	//Setup model view matrix
 	glLoadIdentity();
+    
 	glTranslatef(0.0, -0.0, -3.0);
 	glScalef(kTeapotScale, kTeapotScale, kTeapotScale);
 		
@@ -208,19 +295,7 @@ int flash = 0;
     glRotatef(z*180/PI,0,0,-1);
     glTranslatef(0,0,0.1);
     //glRotatef(-90,-1,0,0);
-
-
     
-	// Draw teapot. The new_teapot_indicies array is an RLE (run-length encoded) version of the teapot_indices array in teapot.h
-	//for(int i = 0; i < num_fo_indicies; i ++)
-	//{
-	//	glDrawElements(GL_TRIANGLE_STRIP, 3, GL_UNSIGNED_SHORT, &fo_indicies[i]);
-	//}
-    // Use vertices, normals, and texture coordinates
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_NORMAL_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
     switch(modelIndexCurrent)
     {
         default:
@@ -229,7 +304,7 @@ int flash = 0;
             glVertexPointer(3, GL_FLOAT,0, vVerts_1);
             glNormalPointer(GL_FLOAT, 0, vNorms_1);
             glTexCoordPointer(2, GL_FLOAT, 0, vText_1);
-            
+            glBindTexture(GL_TEXTURE_2D, 2);
             // Draw them
             glDrawElements(GL_TRIANGLES, sizeof(uiIndexes_1)/sizeof(uiIndexes_1[0]), GL_UNSIGNED_SHORT, uiIndexes_1);
             
@@ -239,13 +314,16 @@ int flash = 0;
             glVertexPointer(3, GL_FLOAT,0, vVerts_2);
             glNormalPointer(GL_FLOAT, 0, vNorms_2);
             glTexCoordPointer(2, GL_FLOAT, 0, vText_2);
-            
+            glBindTexture(GL_TEXTURE_2D, 3);
             // Draw them
             glDrawElements(GL_TRIANGLES, sizeof(uiIndexes_2)/sizeof(uiIndexes_2[0]), GL_UNSIGNED_SHORT, uiIndexes_2);
             
             break;
     }
- 
+
+    
+    
+    
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
 }

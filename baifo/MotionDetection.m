@@ -20,7 +20,7 @@ int hit;
 
 bool InMotion1(float pitch, float roll, float yaw)
 {
-    return (-0.3 < roll && roll < 0.3);
+    return (-0.4 < roll && roll < 0.4);
 }
 
 void ProcessMotion1(float pitch, float roll, float yaw)
@@ -50,7 +50,7 @@ bool IsMotion1Completed()
 
 bool InMotion2(float pitch, float roll, float yaw)
 {
-    return (-0.3 < pitch && pitch < 0.3);
+    return (-0.4 < pitch && pitch < 0.4);
 }
 
 void ProcessMotion2(float pitch, float roll, float yaw)
@@ -79,7 +79,7 @@ bool IsMotion2Completed()
 
 bool InMotion3(float pitch, float roll, float yaw)
 {
-    return ((PI/2-0.4 < roll && roll < PI/2+0.4)||(-PI/2-0.4 < roll && roll < -PI/2+0.4));
+    return ((PI/2-0.5 < roll && roll < PI/2+0.5)||(-PI/2-0.5 < roll && roll < -PI/2+0.5));
 }
 
 void ProcessMotion3(float pitch, float roll, float yaw)

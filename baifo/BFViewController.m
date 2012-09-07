@@ -131,7 +131,7 @@
     {
         [WebAPIClient optInDevice];
         NSString* temp = [WebAPIClient numberOfOnlineUsers];
-        NSString* onlineCount = [temp substringToIndex:10];
+        NSString* onlineCount = [temp substringToIndex:MIN(temp.length, 10)];
         if (![onlineCount isEqualToString:@""])
         {
             dispatch_async(dispatch_get_main_queue(), ^
