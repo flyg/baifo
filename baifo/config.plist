@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>sound_index_max</key>
-	<integer>2</integer>
-	<key>model_index_max</key>
-	<integer>2</integer>
 	<key>server</key>
 	<string>211.152.54.48:8148</string>
 </dict>

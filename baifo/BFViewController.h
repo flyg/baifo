@@ -18,8 +18,6 @@
 @private
     WBEngine *weiBoEngine;
     Reachability *internetReachability;
-    int modelIndexMax;
-    int soundIndexMax;
     int modelIndexCurrent;
     int soundIndexCurrent;
     NSTimer *statusTimer;

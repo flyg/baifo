@@ -1,5 +1,5 @@
 //
-//  SoundEffect.h
+//  BuiltInSound.h
 //  baifo
 //
 //  Created by Hong Liming on 8/30/12.
@@ -7,9 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Sound.h"
 
-@interface SoundEffect : NSObject
+@interface BuiltInSound : Sound
+{
+@public
+    NSString *resource;
+    NSString *type;
+}
+-(void) play;
 
-+(void)switchSound:(int)index;
-+(void)playSound;
 @end

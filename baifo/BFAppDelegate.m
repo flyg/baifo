@@ -11,6 +11,8 @@
 #import "WebAPIClient.h"
 #import "ViewSwitcher.h"
 #import "BFAppData.h"
+#import "ModelManager.h"
+#import "SoundManager.h"
 
 // CONSTANTS
 #define kAccelerometerFrequency		100.0 // Hz
@@ -24,6 +26,8 @@
     [WebAPIClient initGlobal];
     
     [BFAppData initGlobal];
+    [ModelManager initModels];
+    [SoundManager initSounds];
     [ViewSwitcher start];
 
     glView = [ViewSwitcher bfViewController].glView;

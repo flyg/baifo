@@ -16,6 +16,4 @@
 +(void)setModelIndexCurrent:(int)modelIndexCurrent;
 +(int)soundIndexCurrent;
 +(void)setSoundIndexCurrent:(int)soundIndexCurrent;
-+(int)modelIndexMax;
-+(int)soundIndexMax;
 @end

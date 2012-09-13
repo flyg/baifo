@@ -3,10 +3,8 @@
 
 #import "GLGravityView.h"
 #import "MotionDetection.h"
-#import "GLESmodel1.h"
-#import "GLESmodel2.h"
-#import "SoundEffect.h"
-
+#import "SoundManager.h"
+#import "ModelManager.h"
 
 // CONSTANTS
 #define kTeapotScale				3.0
@@ -246,7 +244,11 @@ const GLfloat squareTextures[] = {
         colorB = 0;    
         if (MDMotionCompleted())
         {
-            [SoundEffect playSound];
+            Sound* sound = [SoundManager getSound:soundIndexCurrent];
+            if(nil!=sound)
+            {
+                [sound play];
+            }
             flash = 6;
         }
     }
@@ -295,35 +297,17 @@ const GLfloat squareTextures[] = {
     glRotatef(z*180/PI,0,0,-1);
     glTranslatef(0,0,0.1);
     //glRotatef(-90,-1,0,0);
-    
-    switch(modelIndexCurrent)
+    Model*currentModel = [ModelManager getModel:modelIndexCurrent];
+    if(nil!=currentModel)
     {
-        default:
-        case 0:
-            // Here's where the data is now
-            glVertexPointer(3, GL_FLOAT,0, vVerts_1);
-            glNormalPointer(GL_FLOAT, 0, vNorms_1);
-            glTexCoordPointer(2, GL_FLOAT, 0, vText_1);
-            glBindTexture(GL_TEXTURE_2D, 2);
-            // Draw them
-            glDrawElements(GL_TRIANGLES, sizeof(uiIndexes_1)/sizeof(uiIndexes_1[0]), GL_UNSIGNED_SHORT, uiIndexes_1);
-            
-            break;
-        case 1:
-            // Here's where the data is now
-            glVertexPointer(3, GL_FLOAT,0, vVerts_2);
-            glNormalPointer(GL_FLOAT, 0, vNorms_2);
-            glTexCoordPointer(2, GL_FLOAT, 0, vText_2);
-            glBindTexture(GL_TEXTURE_2D, 3);
-            // Draw them
-            glDrawElements(GL_TRIANGLES, sizeof(uiIndexes_2)/sizeof(uiIndexes_2[0]), GL_UNSIGNED_SHORT, uiIndexes_2);
-            
-            break;
+        // Here's where the data is now
+        glVertexPointer(3, GL_FLOAT,0, currentModel->vVerts);
+        glNormalPointer(GL_FLOAT, 0, currentModel->vNorms);
+        glTexCoordPointer(2, GL_FLOAT, 0, currentModel->vText);
+        glBindTexture(GL_TEXTURE_2D, 2);
+        // Draw them
+        glDrawElements(GL_TRIANGLES, currentModel->cIndexes, GL_UNSIGNED_SHORT, currentModel->uiIndexes);
     }
-
-    
-    
-    
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
 }
@@ -453,6 +437,11 @@ const GLfloat squareTextures[] = {
 -(void)switchModel:(int)index
 {
     modelIndexCurrent = index;
+}
+
+-(void)switchSound:(int)index
+{
+    soundIndexCurrent = index;
 }
 
 - (void)dealloc

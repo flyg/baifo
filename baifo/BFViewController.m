@@ -8,9 +8,10 @@
 
 #import "BFViewController.h"
 #import "WebAPIClient.h"
-#import "SoundEffect.h"
+#import "SoundManager.h"
 #import "BFAppData.h"
 #import "ViewSwitcher.h"
+#import "ModelManager.h"
 
 #ifndef kWBSDKDemoAppKey
 #define kWBSDKDemoAppKey @"2498986407"
@@ -81,12 +82,10 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
     {
-        modelIndexMax = [BFAppData modelIndexMax];
-        soundIndexMax = [BFAppData soundIndexMax];
         modelIndexCurrent = [BFAppData modelIndexCurrent];
         [glView switchModel:modelIndexCurrent];
         soundIndexCurrent = [BFAppData soundIndexCurrent];
-        [SoundEffect switchSound:soundIndexCurrent];
+        [glView switchSound:soundIndexCurrent];
     });
 }
 
@@ -180,7 +179,7 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
     {
-        modelIndexCurrent = (modelIndexCurrent + 1) % modelIndexMax;
+        modelIndexCurrent = (modelIndexCurrent + 1) % [ModelManager modelIndexMax];
         [glView switchModel:modelIndexCurrent];
         [BFAppData setModelIndexCurrent:modelIndexCurrent];
     });
@@ -191,10 +190,15 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
     {
-        soundIndexCurrent = (soundIndexCurrent + 1) % soundIndexMax;
-        [SoundEffect switchSound:soundIndexCurrent];
-        [SoundEffect playSound];
+        soundIndexCurrent = (soundIndexCurrent + 1) % [SoundManager soundIndexMax];
+        [glView switchSound:soundIndexCurrent];
         [BFAppData setSoundIndexCurrent:soundIndexCurrent];
+        // play the sound
+        Sound* sound = [SoundManager getSound:soundIndexCurrent];
+        if(nil!=sound)
+        {
+            [sound play];
+        }
     });
 }
 

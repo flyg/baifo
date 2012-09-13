@@ -25,7 +25,6 @@
 		E279F9E215E8D79300B0C26D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E279F9E115E8D79300B0C26D /* QuartzCore.framework */; };
 		E279F9E415E8D79900B0C26D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E279F9E315E8D79900B0C26D /* Security.framework */; };
 		E279F9E615E8D7A100B0C26D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E279F9E515E8D7A100B0C26D /* SystemConfiguration.framework */; };
-		E29478E115EE7AF200DD0093 /* SoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = E29478E015EE7AF200DD0093 /* SoundEffect.m */; };
 		E295E3B615F4DC410021E5EB /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E295E3B015F4DC410021E5EB /* background.jpg */; };
 		E295E3B715F4DC410021E5EB /* emtf.wav in Resources */ = {isa = PBXBuildFile; fileRef = E295E3B115F4DC410021E5EB /* emtf.wav */; };
 		E295E3B815F4DC410021E5EB /* intro_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E295E3B415F4DC410021E5EB /* intro_background.png */; };
@@ -39,6 +38,7 @@
 		E29957CC15F3CDCF001C4E50 /* ViewSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E29957CB15F3CDCF001C4E50 /* ViewSwitcher.m */; };
 		E29957CF15F3D34C001C4E50 /* BFAppData.m in Sources */ = {isa = PBXBuildFile; fileRef = E29957CE15F3D34C001C4E50 /* BFAppData.m */; };
 		E29957D315F3E302001C4E50 /* IntroPages_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29957D215F3E302001C4E50 /* IntroPages_iPhone.xib */; };
+		E29D83931600020D005E24C4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E29D83921600020D005E24C4 /* StoreKit.framework */; };
 		E2C1546C15E8DC5500C48DFE /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1542C15E8DC5500C48DFE /* JSONKit.m */; };
 		E2C1546D15E8DC5500C48DFE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1542E15E8DC5500C48DFE /* Reachability.m */; };
 		E2C1546E15E8DC5500C48DFE /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1543215E8DC5500C48DFE /* GTMBase64.m */; };
@@ -75,6 +75,12 @@
 		E2C1548D15E8DC5500C48DFE /* SVPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1546B15E8DC5500C48DFE /* SVPlacemark.m */; };
 		E2C1549115E90F3C00C48DFE /* WebAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C1549015E90F3C00C48DFE /* WebAPIClient.m */; };
 		E2C1549315E9112000C48DFE /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2C1549215E9112000C48DFE /* config.plist */; };
+		E2C3772716024191006A6840 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C3772616024191006A6840 /* Model.m */; };
+		E2C3772C16024924006A6840 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C3772B16024924006A6840 /* Sound.m */; };
+		E2C3772F16024B6E006A6840 /* BuiltInSound.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C3772E16024B6E006A6840 /* BuiltInSound.m */; };
+		E2C3773216025229006A6840 /* UserSound.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C3773116025229006A6840 /* UserSound.m */; };
+		E2C37735160255D1006A6840 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C37734160255D1006A6840 /* SoundManager.m */; };
+		E2C37738160255E1006A6840 /* ModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C37737160255E1006A6840 /* ModelManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,8 +109,6 @@
 		E279F9E115E8D79300B0C26D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E279F9E315E8D79900B0C26D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E279F9E515E8D7A100B0C26D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		E29478DF15EE7AF200DD0093 /* SoundEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEffect.h; sourceTree = "<group>"; };
-		E29478E015EE7AF200DD0093 /* SoundEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEffect.m; sourceTree = "<group>"; };
 		E295E3B015F4DC410021E5EB /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = Resources/background.jpg; sourceTree = "<group>"; };
 		E295E3B115F4DC410021E5EB /* emtf.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = emtf.wav; path = Resources/emtf.wav; sourceTree = "<group>"; };
 		E295E3B215F4DC410021E5EB /* GLESmodel1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLESmodel1.h; path = Resources/GLESmodel1.h; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		E29957CD15F3D34B001C4E50 /* BFAppData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFAppData.h; sourceTree = "<group>"; };
 		E29957CE15F3D34C001C4E50 /* BFAppData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFAppData.m; sourceTree = "<group>"; };
 		E29957D215F3E302001C4E50 /* IntroPages_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroPages_iPhone.xib; sourceTree = "<group>"; };
+		E29D83921600020D005E24C4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		E2C1542B15E8DC5500C48DFE /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		E2C1542C15E8DC5500C48DFE /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		E2C1542D15E8DC5500C48DFE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -184,6 +189,18 @@
 		E2C1548F15E90F3C00C48DFE /* WebAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebAPIClient.h; sourceTree = "<group>"; };
 		E2C1549015E90F3C00C48DFE /* WebAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAPIClient.m; sourceTree = "<group>"; };
 		E2C1549215E9112000C48DFE /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		E2C3772516024191006A6840 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model.h; path = OM/Model.h; sourceTree = "<group>"; };
+		E2C3772616024191006A6840 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model.m; path = OM/Model.m; sourceTree = "<group>"; };
+		E2C3772A16024924006A6840 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sound.h; path = OM/Sound.h; sourceTree = "<group>"; };
+		E2C3772B16024924006A6840 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sound.m; path = OM/Sound.m; sourceTree = "<group>"; };
+		E2C3772D16024B6E006A6840 /* BuiltInSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuiltInSound.h; path = OM/BuiltInSound.h; sourceTree = "<group>"; };
+		E2C3772E16024B6E006A6840 /* BuiltInSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuiltInSound.m; path = OM/BuiltInSound.m; sourceTree = "<group>"; };
+		E2C3773016025229006A6840 /* UserSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserSound.h; path = OM/UserSound.h; sourceTree = "<group>"; };
+		E2C3773116025229006A6840 /* UserSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserSound.m; path = OM/UserSound.m; sourceTree = "<group>"; };
+		E2C37733160255D1006A6840 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundManager.h; path = OM/SoundManager.h; sourceTree = "<group>"; };
+		E2C37734160255D1006A6840 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundManager.m; path = OM/SoundManager.m; sourceTree = "<group>"; };
+		E2C37736160255E1006A6840 /* ModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelManager.h; path = OM/ModelManager.h; sourceTree = "<group>"; };
+		E2C37737160255E1006A6840 /* ModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelManager.m; path = OM/ModelManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E29D83931600020D005E24C4 /* StoreKit.framework in Frameworks */,
 				E298D0C815ED057300759B51 /* AVFoundation.framework in Frameworks */,
 				E279F9B115E8D5E600B0C26D /* UIKit.framework in Frameworks */,
 				E279F9E615E8D7A100B0C26D /* SystemConfiguration.framework in Frameworks */,
@@ -240,6 +258,7 @@
 				E279F9DF15E8D78500B0C26D /* OpenGLES.framework */,
 				E279F9E115E8D79300B0C26D /* QuartzCore.framework */,
 				E279F9E315E8D79900B0C26D /* Security.framework */,
+				E29D83921600020D005E24C4 /* StoreKit.framework */,
 				E279F9E515E8D7A100B0C26D /* SystemConfiguration.framework */,
 				E279F9B015E8D5E600B0C26D /* UIKit.framework */,
 			);
@@ -249,6 +268,7 @@
 		E279F9B615E8D5E600B0C26D /* baifo */ = {
 			isa = PBXGroup;
 			children = (
+				E2C3772916024199006A6840 /* OM */,
 				E295E3AF15F4DC330021E5EB /* Resources */,
 				E29957CA15F3CDCF001C4E50 /* ViewSwitcher.h */,
 				E29957CB15F3CDCF001C4E50 /* ViewSwitcher.m */,
@@ -264,8 +284,6 @@
 				E279F9B715E8D5E600B0C26D /* Supporting Files */,
 				E2C1548F15E90F3C00C48DFE /* WebAPIClient.h */,
 				E2C1549015E90F3C00C48DFE /* WebAPIClient.m */,
-				E29478DF15EE7AF200DD0093 /* SoundEffect.h */,
-				E29478E015EE7AF200DD0093 /* SoundEffect.m */,
 				E29957C715F3CBE3001C4E50 /* IntroViewController.h */,
 				E29957C815F3CBE3001C4E50 /* IntroViewController.m */,
 				E29957C015F3C9DD001C4E50 /* IntroViewController_iPhone.xib */,
@@ -415,6 +433,25 @@
 			path = SFHFKeychainUtils;
 			sourceTree = "<group>";
 		};
+		E2C3772916024199006A6840 /* OM */ = {
+			isa = PBXGroup;
+			children = (
+				E2C3773016025229006A6840 /* UserSound.h */,
+				E2C3773116025229006A6840 /* UserSound.m */,
+				E2C3772D16024B6E006A6840 /* BuiltInSound.h */,
+				E2C3772E16024B6E006A6840 /* BuiltInSound.m */,
+				E2C3772A16024924006A6840 /* Sound.h */,
+				E2C3772B16024924006A6840 /* Sound.m */,
+				E2C3772516024191006A6840 /* Model.h */,
+				E2C3772616024191006A6840 /* Model.m */,
+				E2C37733160255D1006A6840 /* SoundManager.h */,
+				E2C37734160255D1006A6840 /* SoundManager.m */,
+				E2C37736160255E1006A6840 /* ModelManager.h */,
+				E2C37737160255E1006A6840 /* ModelManager.m */,
+			);
+			name = OM;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -531,10 +568,15 @@
 				E2C1548C15E8DC5500C48DFE /* SVGeocoder.m in Sources */,
 				E2C1548D15E8DC5500C48DFE /* SVPlacemark.m in Sources */,
 				E2C1549115E90F3C00C48DFE /* WebAPIClient.m in Sources */,
-				E29478E115EE7AF200DD0093 /* SoundEffect.m in Sources */,
 				E29957C915F3CBE3001C4E50 /* IntroViewController.m in Sources */,
 				E29957CC15F3CDCF001C4E50 /* ViewSwitcher.m in Sources */,
 				E29957CF15F3D34C001C4E50 /* BFAppData.m in Sources */,
+				E2C3772716024191006A6840 /* Model.m in Sources */,
+				E2C3772C16024924006A6840 /* Sound.m in Sources */,
+				E2C3772F16024B6E006A6840 /* BuiltInSound.m in Sources */,
+				E2C3773216025229006A6840 /* UserSound.m in Sources */,
+				E2C37735160255D1006A6840 /* SoundManager.m in Sources */,
+				E2C37738160255E1006A6840 /* ModelManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

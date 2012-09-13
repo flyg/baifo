@@ -35,7 +35,7 @@
 	UIAccelerationValue	*accel;
     
     int modelIndexCurrent;
-
+    int soundIndexCurrent;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
@@ -47,5 +47,6 @@
 -(void)stopAnimation;
 -(void)drawView;
 -(void)switchModel:(int)index;
+-(void)switchSound:(int)inde;
 
 @end

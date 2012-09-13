@@ -179,7 +179,7 @@ void ProcessMotion(float pitch, float roll, float yaw)
 
 void MDProcess(float pitch, float roll, float yaw)
 {
-    NSLog(@"pitch = %f, roll = %f, yaw = %f", pitch, roll, yaw);
+    //NSLog(@"pitch = %f, roll = %f, yaw = %f", pitch, roll, yaw);
     if (currentMotion == 0)
     {
         currentMotion = InMotion(pitch, roll, yaw);

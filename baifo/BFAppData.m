@@ -10,15 +10,9 @@
 
 @implementation BFAppData
 NSUserDefaults* g_userDefaults;
-int g_modelIndexMax;
-int g_soundIndexMax;
 +(void)initGlobal
 {
     g_userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString* configFile = [[NSBundle mainBundle]pathForResource:@"config" ofType:@"plist"];
-    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithContentsOfFile:configFile];
-    g_modelIndexMax = ((NSNumber*)[dict objectForKey:@"model_index_max"]).intValue;
-    g_soundIndexMax = ((NSNumber*)[dict objectForKey:@"sound_index_max"]).intValue;
 }
 
 +(BOOL)isFirstRun
@@ -48,14 +42,6 @@ int g_soundIndexMax;
 +(void)setSoundIndexCurrent:(int)soundIndexCurrent
 {
     [g_userDefaults setObject:[NSNumber numberWithInt:soundIndexCurrent] forKey:@"sound_index_current"];
-}
-+(int)modelIndexMax
-{
-    return g_modelIndexMax;
-}
-+(int)soundIndexMax
-{
-    return g_soundIndexMax;
 }
 
 @end
