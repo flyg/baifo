@@ -60,6 +60,11 @@ UINavigationController* g_navigationController;
     g_mainWindow.rootViewController = g_bfViewController;
 }
 
++(void)switchToBFView:(int)index
+{
+    [g_bfViewController.glView switchModel:index];
+    [self switchToBFView];
+}
 
 +(void)switchToIntroView
 {

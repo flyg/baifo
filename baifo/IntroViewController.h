@@ -12,8 +12,6 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
 @property(nonatomic,retain) NSMutableArray *viewControllers;
-@property(nonatomic) BOOL pageControlUsed;
-- (IBAction)changePage:(id)sender;
 - (IBAction)btnStart:(id)sender;
 
 @end

@@ -176,14 +176,14 @@
 
 - (IBAction)btnSwitchModelTouched:(id)sender
 {
-    //[ViewSwitcher switchToChooseModelView];
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    [ViewSwitcher switchToChooseModelView];
+    /*dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
     {
         modelIndexCurrent = (modelIndexCurrent + 1) % [ModelManager modelIndexMax];
         [glView switchModel:modelIndexCurrent];
         [BFAppData setModelIndexCurrent:modelIndexCurrent];
-    });
+    });*/
 }
 
 - (IBAction)btnSwitchSoundTouched:(id)sender

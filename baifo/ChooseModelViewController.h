@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChooseModelViewController : UIViewController
+@interface ChooseModelViewController : UIViewController<UIScrollViewDelegate>
+
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
+@property(nonatomic,retain) NSMutableArray *viewControllers;
+@property (retain, nonatomic) IBOutlet UILabel *lblName;
+@property (retain, nonatomic) IBOutlet UILabel *lblDescription;
+@property (retain, nonatomic) IBOutlet UIButton *btnLeft;
+@property (retain, nonatomic) IBOutlet UIButton *btnRight;
+
+- (IBAction)btnSelectTouched:(id)sender;
+- (IBAction)btnLeftTouched:(id)sender;
+- (IBAction)btnRightTouched:(id)sender;
 
 @end

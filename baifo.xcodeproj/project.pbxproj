@@ -31,7 +31,6 @@
 		E295E3B915F4DC410021E5EB /* spring.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E295E3B515F4DC410021E5EB /* spring.mp3 */; };
 		E295E3BB15F4DD120021E5EB /* ChooseModelViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E295E3BA15F4DD120021E5EB /* ChooseModelViewController_iPhone.xib */; };
 		E295E3BD15F4DD390021E5EB /* ChooseSoundViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E295E3BC15F4DD390021E5EB /* ChooseSoundViewController_iPhone.xib */; };
-		E295E3BF15F4E3680021E5EB /* Screen Shot 2012-09-03 at 9.04.41 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = E295E3BE15F4E3680021E5EB /* Screen Shot 2012-09-03 at 9.04.41 PM.png */; };
 		E298D0C815ED057300759B51 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298D0C715ED057300759B51 /* AVFoundation.framework */; };
 		E29957C115F3C9DD001C4E50 /* IntroViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29957C015F3C9DD001C4E50 /* IntroViewController_iPhone.xib */; };
 		E29957C915F3CBE3001C4E50 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29957C815F3CBE3001C4E50 /* IntroViewController.m */; };
@@ -84,6 +83,7 @@
 		E2C516571603A13F002580FF /* fo1.png in Resources */ = {isa = PBXBuildFile; fileRef = E2C516551603A13F002580FF /* fo1.png */; };
 		E2C516581603A13F002580FF /* fo2.png in Resources */ = {isa = PBXBuildFile; fileRef = E2C516561603A13F002580FF /* fo2.png */; };
 		E2C5165C1603A1A3002580FF /* ChooseModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C5165B1603A1A3002580FF /* ChooseModelViewController.m */; };
+		E2C516601603B518002580FF /* FoDescriptionPages_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2C5165F1603B518002580FF /* FoDescriptionPages_iPhone.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,7 +120,6 @@
 		E295E3B515F4DC410021E5EB /* spring.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = spring.mp3; path = Resources/spring.mp3; sourceTree = "<group>"; };
 		E295E3BA15F4DD120021E5EB /* ChooseModelViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseModelViewController_iPhone.xib; sourceTree = "<group>"; };
 		E295E3BC15F4DD390021E5EB /* ChooseSoundViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseSoundViewController_iPhone.xib; sourceTree = "<group>"; };
-		E295E3BE15F4E3680021E5EB /* Screen Shot 2012-09-03 at 9.04.41 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2012-09-03 at 9.04.41 PM.png"; path = "Resources/Screen Shot 2012-09-03 at 9.04.41 PM.png"; sourceTree = "<group>"; };
 		E298D0C715ED057300759B51 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E29957C015F3C9DD001C4E50 /* IntroViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroViewController_iPhone.xib; sourceTree = "<group>"; };
 		E29957C715F3CBE3001C4E50 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
@@ -208,6 +207,7 @@
 		E2C516561603A13F002580FF /* fo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fo2.png; path = Resources/fo2.png; sourceTree = "<group>"; };
 		E2C5165A1603A1A3002580FF /* ChooseModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseModelViewController.h; sourceTree = "<group>"; };
 		E2C5165B1603A1A3002580FF /* ChooseModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseModelViewController.m; sourceTree = "<group>"; };
+		E2C5165F1603B518002580FF /* FoDescriptionPages_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FoDescriptionPages_iPhone.xib; path = ../FoDescriptionPages_iPhone.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +301,7 @@
 				E295E3BC15F4DD390021E5EB /* ChooseSoundViewController_iPhone.xib */,
 				E2C5165A1603A1A3002580FF /* ChooseModelViewController.h */,
 				E2C5165B1603A1A3002580FF /* ChooseModelViewController.m */,
+				E2C5165F1603B518002580FF /* FoDescriptionPages_iPhone.xib */,
 			);
 			path = baifo;
 			sourceTree = "<group>";
@@ -322,7 +323,6 @@
 			children = (
 				E2C516551603A13F002580FF /* fo1.png */,
 				E2C516561603A13F002580FF /* fo2.png */,
-				E295E3BE15F4E3680021E5EB /* Screen Shot 2012-09-03 at 9.04.41 PM.png */,
 				E295E3B015F4DC410021E5EB /* background.jpg */,
 				E295E3B115F4DC410021E5EB /* emtf.wav */,
 				E295E3B215F4DC410021E5EB /* GLESmodel1.h */,
@@ -543,9 +543,9 @@
 				E295E3B915F4DC410021E5EB /* spring.mp3 in Resources */,
 				E295E3BB15F4DD120021E5EB /* ChooseModelViewController_iPhone.xib in Resources */,
 				E295E3BD15F4DD390021E5EB /* ChooseSoundViewController_iPhone.xib in Resources */,
-				E295E3BF15F4E3680021E5EB /* Screen Shot 2012-09-03 at 9.04.41 PM.png in Resources */,
 				E2C516571603A13F002580FF /* fo1.png in Resources */,
 				E2C516581603A13F002580FF /* fo2.png in Resources */,
+				E2C516601603B518002580FF /* FoDescriptionPages_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

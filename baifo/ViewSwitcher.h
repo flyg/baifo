@@ -18,6 +18,7 @@
 +(void)terminate;
 
 +(void)switchToBFView;
++(void)switchToBFView:(int)index;
 +(void)switchToIntroView;
 +(void)switchToChooseModelView;
 +(BFViewController*)bfViewController;
