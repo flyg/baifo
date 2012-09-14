@@ -53,6 +53,9 @@
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.scrollsToTop = NO;
     scrollView.delegate = self;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+    [scrollView addGestureRecognizer:singleTap];
+    [singleTap release];
     
     pageControl.numberOfPages = modelIndexMax;
     pageControl.currentPage = 0;
@@ -147,14 +150,19 @@
     [self setPage:page];
 }
 
-- (IBAction)btnSelectTouched:(id)sender
+- (void)applySelection:(int)selection
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
     {
-        [BFAppData setModelIndexCurrent:pageControl.currentPage];
+        [BFAppData setModelIndexCurrent:selection];
     });
-    [ViewSwitcher switchToBFView:pageControl.currentPage];
+    [ViewSwitcher switchToBFView:selection];
+}
+
+- (IBAction)btnSelectTouched:(id)sender
+{
+    [self applySelection:pageControl.currentPage];
 }
 
 - (IBAction)btnLeftTouched:(id)sender
@@ -171,6 +179,11 @@
 {
     btnLeft.enabled = pageControl.currentPage > 0;
     btnRight.enabled = pageControl.currentPage < [ModelManager modelIndexMax]-1;
+}
+
+- (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture
+{
+    [self applySelection:pageControl.currentPage];
 }
 
 @end
