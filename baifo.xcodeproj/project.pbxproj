@@ -81,6 +81,9 @@
 		E2C3773216025229006A6840 /* UserSound.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C3773116025229006A6840 /* UserSound.m */; };
 		E2C37735160255D1006A6840 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C37734160255D1006A6840 /* SoundManager.m */; };
 		E2C37738160255E1006A6840 /* ModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C37737160255E1006A6840 /* ModelManager.m */; };
+		E2C516571603A13F002580FF /* fo1.png in Resources */ = {isa = PBXBuildFile; fileRef = E2C516551603A13F002580FF /* fo1.png */; };
+		E2C516581603A13F002580FF /* fo2.png in Resources */ = {isa = PBXBuildFile; fileRef = E2C516561603A13F002580FF /* fo2.png */; };
+		E2C5165C1603A1A3002580FF /* ChooseModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C5165B1603A1A3002580FF /* ChooseModelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,6 +204,10 @@
 		E2C37734160255D1006A6840 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundManager.m; path = OM/SoundManager.m; sourceTree = "<group>"; };
 		E2C37736160255E1006A6840 /* ModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelManager.h; path = OM/ModelManager.h; sourceTree = "<group>"; };
 		E2C37737160255E1006A6840 /* ModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelManager.m; path = OM/ModelManager.m; sourceTree = "<group>"; };
+		E2C516551603A13F002580FF /* fo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fo1.png; path = Resources/fo1.png; sourceTree = "<group>"; };
+		E2C516561603A13F002580FF /* fo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fo2.png; path = Resources/fo2.png; sourceTree = "<group>"; };
+		E2C5165A1603A1A3002580FF /* ChooseModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseModelViewController.h; sourceTree = "<group>"; };
+		E2C5165B1603A1A3002580FF /* ChooseModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseModelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +299,8 @@
 				E29957D215F3E302001C4E50 /* IntroPages_iPhone.xib */,
 				E295E3BA15F4DD120021E5EB /* ChooseModelViewController_iPhone.xib */,
 				E295E3BC15F4DD390021E5EB /* ChooseSoundViewController_iPhone.xib */,
+				E2C5165A1603A1A3002580FF /* ChooseModelViewController.h */,
+				E2C5165B1603A1A3002580FF /* ChooseModelViewController.m */,
 			);
 			path = baifo;
 			sourceTree = "<group>";
@@ -311,6 +320,8 @@
 		E295E3AF15F4DC330021E5EB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E2C516551603A13F002580FF /* fo1.png */,
+				E2C516561603A13F002580FF /* fo2.png */,
 				E295E3BE15F4E3680021E5EB /* Screen Shot 2012-09-03 at 9.04.41 PM.png */,
 				E295E3B015F4DC410021E5EB /* background.jpg */,
 				E295E3B115F4DC410021E5EB /* emtf.wav */,
@@ -533,6 +544,8 @@
 				E295E3BB15F4DD120021E5EB /* ChooseModelViewController_iPhone.xib in Resources */,
 				E295E3BD15F4DD390021E5EB /* ChooseSoundViewController_iPhone.xib in Resources */,
 				E295E3BF15F4E3680021E5EB /* Screen Shot 2012-09-03 at 9.04.41 PM.png in Resources */,
+				E2C516571603A13F002580FF /* fo1.png in Resources */,
+				E2C516581603A13F002580FF /* fo2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +590,7 @@
 				E2C3773216025229006A6840 /* UserSound.m in Sources */,
 				E2C37735160255D1006A6840 /* SoundManager.m in Sources */,
 				E2C37738160255E1006A6840 /* ModelManager.m in Sources */,
+				E2C5165C1603A1A3002580FF /* ChooseModelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

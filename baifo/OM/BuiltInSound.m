@@ -9,11 +9,7 @@
 #import "BuiltInSound.h"
 #import <AVFoundation/AVAudioPlayer.h>
 
-const int MAX_BUILTIN_SOUND = 2;
-
 @implementation BuiltInSound
-
-Sound*sounds[MAX_BUILTIN_SOUND];
 
 -(void)play
 {

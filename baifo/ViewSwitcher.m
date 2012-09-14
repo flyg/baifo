@@ -9,6 +9,7 @@
 #import "ViewSwitcher.h"
 #import "BFViewController.h"
 #import "IntroViewController.h"
+#import "ChooseModelViewController.h"
 #import "BFAppData.h"
 
 @implementation ViewSwitcher;
@@ -17,6 +18,7 @@
 UIWindow* g_mainWindow;
 IntroViewController* g_introViewController;
 BFViewController* g_bfViewController;
+ChooseModelViewController* g_chooseModelViewController;
 UINavigationController* g_navigationController;
 
 
@@ -26,7 +28,7 @@ UINavigationController* g_navigationController;
     
     g_bfViewController = [[BFViewController alloc]initWithNibName:@"BFViewController_iPhone" bundle:nil];
     g_introViewController = [[IntroViewController alloc]initWithNibName:@"IntroViewController_iPhone" bundle:nil];
-        
+    g_chooseModelViewController = [[ChooseModelViewController alloc]initWithNibName:@"ChooseModelViewController_iPhone" bundle:nil];
     g_navigationController = [[UINavigationController alloc]initWithRootViewController:g_bfViewController];
     g_navigationController.navigationBarHidden = YES;
     
@@ -65,5 +67,10 @@ UINavigationController* g_navigationController;
     [g_bfViewController.glView stopAnimation];
 }
 
++(void)switchToChooseModelView
+{
+    g_mainWindow.rootViewController = g_chooseModelViewController;
+    [g_bfViewController.glView stopAnimation];
+}
 
 @end
