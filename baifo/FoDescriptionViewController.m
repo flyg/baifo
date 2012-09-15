@@ -13,6 +13,9 @@
 @end
 
 @implementation FoDescriptionViewController
+@synthesize imgScreenShot;
+@synthesize lblName;
+@synthesize lblDescription;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +34,9 @@
 
 - (void)viewDidUnload
 {
+    [self setImgScreenShot:nil];
+    [self setLblName:nil];
+    [self setLblDescription:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -40,4 +46,31 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void) loadModel:(Model*)fo
+{
+    self->model = fo;
+    lblName.text = fo->name;
+    lblDescription.text = fo->description;
+    UIImage * image = [UIImage imageNamed:fo->screenShot];
+    imgScreenShot.image = image;
+    if(!fo->free)
+    {
+        lblName.alpha = 0.5;
+        lblDescription.alpha = 0.5;
+        imgScreenShot.alpha = 0.5;
+    }
+    else
+    {
+        lblName.alpha = 1;
+        lblDescription.alpha = 1;
+        imgScreenShot.alpha = 1;
+    }
+}
+
+- (void)dealloc {
+    [imgScreenShot release];
+    [lblName release];
+    [lblDescription release];
+    [super dealloc];
+}
 @end

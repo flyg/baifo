@@ -17,9 +17,11 @@
 @property (retain, nonatomic) IBOutlet UILabel *lblDescription;
 @property (retain, nonatomic) IBOutlet UIButton *btnLeft;
 @property (retain, nonatomic) IBOutlet UIButton *btnRight;
+@property (retain, nonatomic) IBOutlet UIButton *btnSelect;
 
 - (IBAction)btnSelectTouched:(id)sender;
 - (IBAction)btnLeftTouched:(id)sender;
 - (IBAction)btnRightTouched:(id)sender;
+- (void)switchToCurrentModel;
 
 @end

@@ -75,6 +75,7 @@ UINavigationController* g_navigationController;
 +(void)switchToChooseModelView
 {
     g_mainWindow.rootViewController = g_chooseModelViewController;
+    [g_chooseModelViewController switchToCurrentModel];
     [g_bfViewController.glView stopAnimation];
 }
 

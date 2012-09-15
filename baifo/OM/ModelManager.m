@@ -47,7 +47,7 @@ Model*models[MAX_MODEL];
     model->vText = vText_2;
     model->uiIndexes = uiIndexes_2;
     model->cIndexes = sizeof(uiIndexes_2)/sizeof(uiIndexes_2[0]);
-    model->free = true;
+    model->free = false;
     return model;
 }
 

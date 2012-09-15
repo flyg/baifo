@@ -10,6 +10,7 @@
 #import "ModelManager.h"
 #import "ViewSwitcher.h"
 #import "BFAppData.h"
+#import "FoDescriptionViewController.h"
 
 @interface ChooseModelViewController ()
 
@@ -23,6 +24,7 @@
 @synthesize lblDescription;
 @synthesize btnLeft;
 @synthesize btnRight;
+@synthesize btnSelect;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,11 +60,6 @@
     [singleTap release];
     
     pageControl.numberOfPages = modelIndexMax;
-    pageControl.currentPage = 0;
-    
-    [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
-    [self fixNavigationButtons];
 }
 
 - (void)viewDidUnload
@@ -73,6 +70,7 @@
     [self setLblDescription:nil];
     [self setBtnLeft:nil];
     [self setBtnRight:nil];
+    [self setBtnSelect:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -89,7 +87,13 @@
     [lblDescription release];
     [btnLeft release];
     [btnRight release];
+    [btnSelect release];
     [super dealloc];
+}
+
+- (void)switchToCurrentModel
+{
+    [self gotoPage:[BFAppData modelIndexCurrent]];
 }
 
 - (void)loadScrollViewWithPage:(int)page
@@ -100,37 +104,41 @@
         return;
     
     // replace the placeholder if necessary
-    UIView *stepView = [viewControllers objectAtIndex:page];
-    if ((NSNull *)stepView == [NSNull null]) {
+    FoDescriptionViewController *stepViewController = [viewControllers objectAtIndex:page];
+    if ((NSNull *)stepViewController == [NSNull null])
+    {
         Model *currentModel = [ModelManager getModel:page];
         if(nil != currentModel)
         {
-            NSArray *updateStepViews = [[NSBundle mainBundle] loadNibNamed:@"FoDescriptionPages_iPhone" owner:self options:nil];
-            stepView = [updateStepViews objectAtIndex:page];
-            [viewControllers replaceObjectAtIndex:page withObject:stepView];
+            FoDescriptionViewController *foDescriptionViewController = [[FoDescriptionViewController alloc]initWithNibName:@"FoDescriptionView_iPhone" bundle:nil];
+            stepViewController = foDescriptionViewController;
+            // initialize the view
+            stepViewController.view;
+            [foDescriptionViewController loadModel:currentModel];
+            [viewControllers replaceObjectAtIndex:page withObject:stepViewController];
         }
     }
     
     // add the controller's view to the scroll view
-    if (stepView.superview == nil)
+    if (stepViewController.view.superview == nil)
     {
-        CGRect frame = scrollView.frame;
+        CGRect frame = stepViewController.view.frame;
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0;
-        stepView.frame = frame;
-        [scrollView addSubview:stepView];
+        stepViewController.view.frame = frame;
+        [scrollView addSubview:stepViewController.view];
     }
 }
 
 - (void)setPage:(int)page
 {
     pageControl.currentPage = page;
-    [self fixNavigationButtons];
     
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
     [self loadScrollViewWithPage:pageControl.currentPage - 1];
     [self loadScrollViewWithPage:pageControl.currentPage];
     [self loadScrollViewWithPage:pageControl.currentPage + 1];
+    [self fixButtonStates];
 }
 
 - (void)gotoPage:(int)page
@@ -162,7 +170,10 @@
 
 - (IBAction)btnSelectTouched:(id)sender
 {
-    [self applySelection:pageControl.currentPage];
+    if(btnSelect.enabled)
+    {
+        [self applySelection:pageControl.currentPage];
+    }
 }
 
 - (IBAction)btnLeftTouched:(id)sender
@@ -175,15 +186,27 @@
     [self gotoPage: pageControl.currentPage + 1];
 }
 
--(void)fixNavigationButtons
+-(void)fixButtonStates
 {
     btnLeft.enabled = pageControl.currentPage > 0;
     btnRight.enabled = pageControl.currentPage < [ModelManager modelIndexMax]-1;
+    FoDescriptionViewController *stepViewController = [viewControllers objectAtIndex:pageControl.currentPage];
+    if ((NSNull *)stepViewController != [NSNull null])
+    {
+        btnSelect.enabled = stepViewController->model->free;
+    }
+    else
+    {
+        btnSelect.enabled = false;
+    }
 }
 
 - (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture
 {
-    [self applySelection:pageControl.currentPage];
+    if(btnSelect.enabled)
+    {
+        [self applySelection:pageControl.currentPage];
+    }
 }
 
 @end
