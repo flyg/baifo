@@ -22,7 +22,6 @@
 - (IBAction)btnSelectTouched:(id)sender;
 - (IBAction)btnLeftTouched:(id)sender;
 - (IBAction)btnRightTouched:(id)sender;
-- (IBAction)btnCancelTouched:(id)sender;
 - (void)switchToCurrentModel;
 
 @end

@@ -186,11 +186,6 @@
     [self gotoPage: pageControl.currentPage + 1];
 }
 
-- (IBAction)btnCancelTouched:(id)sender
-{
-    [ViewSwitcher switchToBFView];
-}
-
 -(void)fixButtonStates
 {
     btnLeft.enabled = pageControl.currentPage > 0;
