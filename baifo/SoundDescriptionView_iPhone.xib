@@ -84,7 +84,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUINormalTitle">|&gt;</string>
 						<reference key="IBUIHighlightedTitleColor" ref="36576317"/>
-						<object class="NSColor" key="IBUIDisabledTitleColor" id="656390265">
+						<object class="NSColor" key="IBUIDisabledTitleColor" id="28066177">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
 						</object>
@@ -102,7 +102,6 @@
 						<string key="NSFrame">{{273, 9}, {39, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -110,7 +109,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUINormalTitle">〇</string>
 						<reference key="IBUIHighlightedTitleColor" ref="36576317"/>
-						<reference key="IBUIDisabledTitleColor" ref="656390265"/>
+						<reference key="IBUIDisabledTitleColor" ref="28066177"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">2</int>
 							<bytes key="NSRGB">MC45NDUwOTgxMDIxIDAuOTk2MDc4NDkxMiAwLjQ5ODAzOTI0NTYAA</bytes>
@@ -134,7 +133,10 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Name</string>
 						<reference key="IBUITextColor" ref="36576317"/>
-						<nil key="IBUIHighlightedColor"/>
+						<object class="NSColor" key="IBUIHighlightedColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC45NDUwOTgxMDIxIDAuOTk2MDc4NDkxMiAwLjQ5ODAzOTI0NTYAA</bytes>
+						</object>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">

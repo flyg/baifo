@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SoundDescriptionViewController.h"
 
 @interface ChooseSoundViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+{
+    NSMutableDictionary* allSoundDescriptionViewControllers;
+}
 @property (retain, nonatomic) IBOutlet UITableView *tblSounds;
 - (IBAction)btnReturnTouched:(id)sender;
-
+- (void)switchToCurrentSound;
 @end

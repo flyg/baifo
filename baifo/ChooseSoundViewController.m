@@ -7,7 +7,6 @@
 //
 
 #import "ChooseSoundViewController.h"
-#import "SoundDescriptionViewController.h"
 #import "SoundManager.h"
 #import "BFAppData.h"
 #import "ViewSwitcher.h"
@@ -32,6 +31,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    allSoundDescriptionViewControllers = [[NSMutableDictionary alloc]init];
 }
 
 - (void)viewDidUnload
@@ -39,6 +39,7 @@
     [self setTblSounds:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+    [allSoundDescriptionViewControllers release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -60,6 +61,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SoundDescriptionViewController *soundDescriptionViewController = [[SoundDescriptionViewController alloc]initWithNibName:@"SoundDescriptionView_iPhone" bundle:nil];
+    [allSoundDescriptionViewControllers setObject:soundDescriptionViewController forKey:[NSNumber numberWithInt:indexPath.row]];
     Sound*sound = [SoundManager getSound:indexPath.row];
     // initialize the view
     soundDescriptionViewController.view;
@@ -84,5 +86,23 @@
 - (IBAction)btnReturnTouched:(id)sender
 {
     [ViewSwitcher switchToBFView];
+}
+
+- (void)switchToCurrentSound
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^
+    {
+        int soundIndexCurrent = [BFAppData soundIndexCurrent];
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+            for(int i=0; i<[SoundManager soundIndexMax];i++)
+            {
+                SoundDescriptionViewController*soundDescriptionViewcontroller = [allSoundDescriptionViewControllers objectForKey:[NSNumber numberWithInt:i]];
+                [soundDescriptionViewcontroller refreshSelection:i == soundIndexCurrent];
+            }
+            //self gotoPage:modelIndexCurrent];
+        });
+    });
 }
 @end

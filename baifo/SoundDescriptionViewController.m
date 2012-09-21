@@ -84,4 +84,9 @@
         [ViewSwitcher switchToBFView:-1 soundIndex:self->index];
     }
 }
+
+- (void) refreshSelection:(BOOL)selected
+{
+    lblName.highlighted = selected;
+}
 @end

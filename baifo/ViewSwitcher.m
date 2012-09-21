@@ -92,6 +92,7 @@ UINavigationController* g_navigationController;
 +(void)switchToChooseSoundView
 {
     g_mainWindow.rootViewController = g_chooseSoundViewController;
+    [g_chooseSoundViewController switchToCurrentSound];
     [g_bfViewController.glView stopAnimation];
 }
 @end
