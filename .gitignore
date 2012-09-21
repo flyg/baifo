@@ -13,3 +13,7 @@ build/*
 xcuserdata
 profile
 *.moved-aside
+
+baifo/OM/SoundManager.m
+
+baifo/BFAppData.m

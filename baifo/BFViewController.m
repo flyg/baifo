@@ -188,7 +188,8 @@
 
 - (IBAction)btnSwitchSoundTouched:(id)sender
 {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    [ViewSwitcher switchToChooseSoundView];
+    /*dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
     {
         soundIndexCurrent = (soundIndexCurrent + 1) % [SoundManager soundIndexMax];
@@ -200,7 +201,7 @@
         {
             [sound play];
         }
-    });
+    });*/
 }
 
 - (IBAction)btnHelpTouched:(id)sender

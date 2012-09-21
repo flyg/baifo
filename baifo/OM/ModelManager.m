@@ -39,7 +39,7 @@ Model*models[MAX_MODEL];
 +(Model*) initModel2
 {
     Model*model=[[Model alloc]init];
-    model->name = @" 如来佛";
+    model->name = @"如来佛";
     model->description = @"如来佛的说明";
     model->screenShot = @"fo2.png";
     model->vVerts = vVerts_2;

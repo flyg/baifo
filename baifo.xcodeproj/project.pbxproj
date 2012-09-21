@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E26918FA160CADC900495661 /* ChooseSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26918F9160CADC900495661 /* ChooseSoundViewController.m */; };
+		E2691901160CB01600495661 /* SoundDescriptionView_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2691900160CB01600495661 /* SoundDescriptionView_iPhone.xib */; };
+		E2691904160CB2E000495661 /* SoundDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2691903160CB2E000495661 /* SoundDescriptionViewController.m */; };
 		E279F9B115E8D5E600B0C26D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E279F9B015E8D5E600B0C26D /* UIKit.framework */; };
 		E279F9B315E8D5E600B0C26D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E279F9B215E8D5E600B0C26D /* Foundation.framework */; };
 		E279F9B515E8D5E600B0C26D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E279F9B415E8D5E600B0C26D /* CoreGraphics.framework */; };
@@ -88,6 +91,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E26918F8160CADC900495661 /* ChooseSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSoundViewController.h; sourceTree = "<group>"; };
+		E26918F9160CADC900495661 /* ChooseSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSoundViewController.m; sourceTree = "<group>"; };
+		E2691900160CB01600495661 /* SoundDescriptionView_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundDescriptionView_iPhone.xib; sourceTree = "<group>"; };
+		E2691902160CB2E000495661 /* SoundDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundDescriptionViewController.h; sourceTree = "<group>"; };
+		E2691903160CB2E000495661 /* SoundDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundDescriptionViewController.m; sourceTree = "<group>"; };
 		E279F9AC15E8D5E600B0C26D /* baifo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = baifo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E279F9B015E8D5E600B0C26D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E279F9B215E8D5E600B0C26D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -237,6 +245,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E26918FC160CAE9600495661 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				E279F9C515E8D5E600B0C26D /* BFViewController_iPhone.xib */,
+				E279F9C215E8D5E600B0C26D /* BFViewController.h */,
+				E279F9C315E8D5E600B0C26D /* BFViewController.m */,
+				E279F9D115E8D73900B0C26D /* GLGravityView.h */,
+				E279F9D215E8D73900B0C26D /* GLGravityView.m */,
+			);
+			name = MainPage;
+			sourceTree = "<group>";
+		};
+		E26918FD160CAEA000495661 /* ChooseModelPage */ = {
+			isa = PBXGroup;
+			children = (
+				E2C5165F1603B518002580FF /* FoDescriptionView_iPhone.xib */,
+				E2E5D47F160506FA001998C0 /* FoDescriptionViewController.h */,
+				E2E5D480160506FA001998C0 /* FoDescriptionViewController.m */,
+				E295E3BA15F4DD120021E5EB /* ChooseModelViewController_iPhone.xib */,
+				E2C5165A1603A1A3002580FF /* ChooseModelViewController.h */,
+				E2C5165B1603A1A3002580FF /* ChooseModelViewController.m */,
+			);
+			name = ChooseModelPage;
+			sourceTree = "<group>";
+		};
+		E26918FE160CAEAF00495661 /* ChooseSoundPage */ = {
+			isa = PBXGroup;
+			children = (
+				E2691900160CB01600495661 /* SoundDescriptionView_iPhone.xib */,
+				E2691902160CB2E000495661 /* SoundDescriptionViewController.h */,
+				E2691903160CB2E000495661 /* SoundDescriptionViewController.m */,
+				E295E3BC15F4DD390021E5EB /* ChooseSoundViewController_iPhone.xib */,
+				E26918F8160CADC900495661 /* ChooseSoundViewController.h */,
+				E26918F9160CADC900495661 /* ChooseSoundViewController.m */,
+			);
+			name = ChooseSoundPage;
+			sourceTree = "<group>";
+		};
+		E26918FF160CAF0300495661 /* IntroPage */ = {
+			isa = PBXGroup;
+			children = (
+				E29957D215F3E302001C4E50 /* IntroPages_iPhone.xib */,
+				E29957C015F3C9DD001C4E50 /* IntroViewController_iPhone.xib */,
+				E29957C715F3CBE3001C4E50 /* IntroViewController.h */,
+				E29957C815F3CBE3001C4E50 /* IntroViewController.m */,
+			);
+			name = IntroPage;
+			sourceTree = "<group>";
+		};
 		E279F9A115E8D5E600B0C26D = {
 			isa = PBXGroup;
 			children = (
@@ -278,35 +335,23 @@
 		E279F9B615E8D5E600B0C26D /* baifo */ = {
 			isa = PBXGroup;
 			children = (
+				E26918FF160CAF0300495661 /* IntroPage */,
+				E26918FE160CAEAF00495661 /* ChooseSoundPage */,
+				E26918FD160CAEA000495661 /* ChooseModelPage */,
+				E26918FC160CAE9600495661 /* MainPage */,
 				E2C3772916024199006A6840 /* OM */,
 				E295E3AF15F4DC330021E5EB /* Resources */,
 				E29957CA15F3CDCF001C4E50 /* ViewSwitcher.h */,
 				E29957CB15F3CDCF001C4E50 /* ViewSwitcher.m */,
-				E279F9D115E8D73900B0C26D /* GLGravityView.h */,
-				E279F9D215E8D73900B0C26D /* GLGravityView.m */,
 				E279F9D315E8D73900B0C26D /* MotionDetection.h */,
 				E279F9D415E8D73900B0C26D /* MotionDetection.m */,
 				E279F9BF15E8D5E600B0C26D /* BFAppDelegate.h */,
 				E279F9C015E8D5E600B0C26D /* BFAppDelegate.m */,
-				E279F9C215E8D5E600B0C26D /* BFViewController.h */,
-				E279F9C315E8D5E600B0C26D /* BFViewController.m */,
-				E279F9C515E8D5E600B0C26D /* BFViewController_iPhone.xib */,
 				E279F9B715E8D5E600B0C26D /* Supporting Files */,
 				E2C1548F15E90F3C00C48DFE /* WebAPIClient.h */,
 				E2C1549015E90F3C00C48DFE /* WebAPIClient.m */,
-				E29957C715F3CBE3001C4E50 /* IntroViewController.h */,
-				E29957C815F3CBE3001C4E50 /* IntroViewController.m */,
-				E29957C015F3C9DD001C4E50 /* IntroViewController_iPhone.xib */,
 				E29957CD15F3D34B001C4E50 /* BFAppData.h */,
 				E29957CE15F3D34C001C4E50 /* BFAppData.m */,
-				E29957D215F3E302001C4E50 /* IntroPages_iPhone.xib */,
-				E295E3BA15F4DD120021E5EB /* ChooseModelViewController_iPhone.xib */,
-				E295E3BC15F4DD390021E5EB /* ChooseSoundViewController_iPhone.xib */,
-				E2C5165A1603A1A3002580FF /* ChooseModelViewController.h */,
-				E2C5165B1603A1A3002580FF /* ChooseModelViewController.m */,
-				E2C5165F1603B518002580FF /* FoDescriptionView_iPhone.xib */,
-				E2E5D47F160506FA001998C0 /* FoDescriptionViewController.h */,
-				E2E5D480160506FA001998C0 /* FoDescriptionViewController.m */,
 			);
 			path = baifo;
 			sourceTree = "<group>";
@@ -551,6 +596,7 @@
 				E2C516571603A13F002580FF /* fo1.png in Resources */,
 				E2C516581603A13F002580FF /* fo2.png in Resources */,
 				E2C516601603B518002580FF /* FoDescriptionView_iPhone.xib in Resources */,
+				E2691901160CB01600495661 /* SoundDescriptionView_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +643,8 @@
 				E2C37738160255E1006A6840 /* ModelManager.m in Sources */,
 				E2C5165C1603A1A3002580FF /* ChooseModelViewController.m in Sources */,
 				E2E5D481160506FA001998C0 /* FoDescriptionViewController.m in Sources */,
+				E26918FA160CADC900495661 /* ChooseSoundViewController.m in Sources */,
+				E2691904160CB2E000495661 /* SoundDescriptionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,9 +18,11 @@
 +(void)terminate;
 
 +(void)switchToBFView;
-+(void)switchToBFView:(int)index;
++(void)switchToBFView:(int)modelIndex soundIndex:(int)soundIndex;
 +(void)switchToIntroView;
 +(void)switchToChooseModelView;
++(void)switchToChooseSoundView;
+
 +(BFViewController*)bfViewController;
 
 @end

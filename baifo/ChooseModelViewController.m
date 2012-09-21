@@ -165,7 +165,7 @@
     {
         [BFAppData setModelIndexCurrent:selection];
     });
-    [ViewSwitcher switchToBFView:selection];
+    [ViewSwitcher switchToBFView:selection soundIndex:-1];
 }
 
 - (IBAction)btnSelectTouched:(id)sender
@@ -184,6 +184,11 @@
 - (IBAction)btnRightTouched:(id)sender
 {
     [self gotoPage: pageControl.currentPage + 1];
+}
+
+- (IBAction)btnCancelTouched:(id)sender
+{
+    [ViewSwitcher switchToBFView];
 }
 
 -(void)fixButtonStates
