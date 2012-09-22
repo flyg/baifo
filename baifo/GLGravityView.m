@@ -26,7 +26,6 @@
 
 @synthesize animating;
 @dynamic animationFrameInterval;
-@synthesize accel;
 
 // Implement this to override the default layer class (which is [CALayer class]).
 // We do this so that our view will be backed by a layer that is capable of OpenGL ES rendering.
@@ -55,7 +54,7 @@
 	
 		animating = FALSE;
 		displayLinkSupported = FALSE;
-		animationFrameInterval = 3;
+		animationFrameInterval = 4;
 		displayLink = nil;
 		animationTimer = nil;
 	
@@ -66,12 +65,9 @@
 		if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
 			displayLinkSupported = TRUE;
 		
-		accel = calloc(3, sizeof(UIAccelerationValue));
 		mm = [[CMMotionManager alloc]init];
         lm = [[CLLocationManager alloc]init];
         
-        [mm startDeviceMotionUpdates];
-        [lm startUpdatingHeading];
 		[self setupView];
 	}
 	
@@ -207,62 +203,79 @@ const GLfloat squareTextures[] = {
 
     double x,y,z;
     double r;
-    if (mm.deviceMotionActive)
+    float colorR = 0, colorG = 0, colorB = 0;
+    t += 0.02;
+    if(self->viewMode==VIEW_MODE_MAIN)
     {
-        // on real device
-        CMAttitude* attitude = mm.deviceMotion.attitude;
-        x = attitude.pitch;
-        y = attitude.roll;
-        z = attitude.yaw;
-        if (lm.headingAvailable)
+        if (mm.deviceMotionActive)
         {
-            CLHeading* heading = lm.heading;
-            r = heading.trueHeading;
-            NSLog(@"%f", r);
+            // on real device
+            CMAttitude* attitude = mm.deviceMotion.attitude;
+            x = attitude.pitch;
+            y = attitude.roll;
+            z = attitude.yaw;
+            if (lm.headingAvailable)
+            {
+                CLHeading* heading = lm.heading;
+                r = heading.trueHeading;
+                NSLog(@"%f", r);
+            }
+            else
+            {
+                r = 0;
+            }
+            
+            MDProcess(x,y,z);
+            
+            // disable visual movement on y ane z axises
+            y = 0;
+            z = 0;
+            
+            int motion = MDCurrentMotion();
+            if (motion!=0)
+            {
+                colorR = 1;
+                colorG = 0;
+                colorB = 0;
+                if (MDMotionCompleted())
+                {
+                    Sound* sound = [SoundManager getSound:soundIndexCurrent];
+                    if(nil!=sound)
+                    {
+                        [sound play];
+                    }
+                    flash = 6;
+                }
+            }
+            
+            if(flash)
+            {
+                if(flash%2==1)
+                {
+                    colorR = 1;
+                    colorG = 1;
+                    colorB = 1;
+                }
+                flash--;
+            }
         }
-        
+        else
+        {
+            // in simulator or on real device but motion is disabled
+            x = sin(t);
+            y = 2.78*cos(t/2.78);
+            z = t;
+            r = 0;
+        }        
     }
     else
     {
-        // in simulator or on real device but motion is disabled
-        x = sin(t);
-        y = 2.78*cos(t/2.78);
-        z = t;
+        x = PI/2;
+        y = -t;
+        z = 0;
         r = 0;
     }
-    t+=0.02;
-    
-    float colorR = 0, colorG = 0, colorB = 0;
-    
-    MDProcess(x,y,z);
 
-    int motion = MDCurrentMotion();
-    if (motion!=0)
-    {
-        colorR = 1;
-        colorG = 0;
-        colorB = 0;    
-        if (MDMotionCompleted())
-        {
-            Sound* sound = [SoundManager getSound:soundIndexCurrent];
-            if(nil!=sound)
-            {
-                [sound play];
-            }
-            flash = 6;
-        }
-    }
-    
-    if(flash)
-    {
-        if(flash%2==1)
-        {
-            colorR = 1;
-            colorG = 1;
-            colorB = 1;
-        }
-        flash--;
-    }
     
     // Make sure that you are drawing to the current context
 	[EAGLContext setCurrentContext:context];
@@ -290,8 +303,8 @@ const GLfloat squareTextures[] = {
 	glScalef(kTeapotScale, kTeapotScale, kTeapotScale);
 		
 	
-		//Finally load matrix
-		//glMultMatrixf((GLfloat*)matrix);
+	//Finally load matrix
+	//glMultMatrixf((GLfloat*)matrix);
     glRotatef(y*180/PI,0,-1,0);
     glRotatef(x*180/PI,-1,0,0);
     glRotatef(z*180/PI,0,0,-1);
@@ -396,6 +409,12 @@ const GLfloat squareTextures[] = {
 
 - (void) startAnimation
 {
+    [self startAnimation:VIEW_MODE_MAIN];
+}
+
+- (void) startAnimation:(int)mode
+{
+    self->viewMode = mode;
 	if (!animating)
 	{
 		if (displayLinkSupported)
@@ -410,9 +429,14 @@ const GLfloat squareTextures[] = {
 		}
 		else
 			animationTimer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)((1.0 / 60.0) * animationFrameInterval) target:self selector:@selector(drawView) userInfo:nil repeats:TRUE];
-		MDInit();
 		animating = TRUE;
 	}
+    if(self->viewMode==VIEW_MODE_MAIN)
+    {
+        [mm startDeviceMotionUpdates];
+        [lm startUpdatingHeading];
+        MDInit();
+    }
 }
 
 - (void)stopAnimation
@@ -430,6 +454,11 @@ const GLfloat squareTextures[] = {
 			animationTimer = nil;
 		}
 		
+        if(self->viewMode==VIEW_MODE_MAIN)
+        {
+            [mm stopDeviceMotionUpdates];
+            [lm stopUpdatingHeading];
+        }
 		animating = FALSE;
 	}
 }
@@ -447,7 +476,7 @@ const GLfloat squareTextures[] = {
 - (void)dealloc
 {
     [mm stopDeviceMotionUpdates];
-	free(accel);
+    [lm stopUpdatingHeading];
 	
 	if([EAGLContext currentContext] == context)
 	{

@@ -12,9 +12,7 @@
 @class BFViewController;
 
 @interface BFAppDelegate : UIResponder <UIApplicationDelegate, UIAccelerometerDelegate>
-{
-    UIAccelerationValue accel[3];
-}
+
 
 @property (strong, nonatomic) GLGravityView *glView;
 

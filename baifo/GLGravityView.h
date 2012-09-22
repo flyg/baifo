@@ -5,6 +5,10 @@
 #import <CoreMotion/CoreMotion.h>
 #import <CoreLocation/CoreLocation.h>
 
+
+#define VIEW_MODE_MAIN 0
+#define VIEW_MODE_CHOOSEMODEL 1
+
 @interface GLGravityView : UIView
 {
 @private
@@ -31,22 +35,21 @@
     NSTimer *animationTimer;
     CMMotionManager *mm;
     CLLocationManager *lm;
-	
-	UIAccelerationValue	*accel;
     
     int modelIndexCurrent;
     int soundIndexCurrent;
+    
+    int viewMode;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger animationFrameInterval;
 
-@property (nonatomic) UIAccelerationValue *accel;
-
 -(void)startAnimation;
+-(void)startAnimation:(int)mode;
 -(void)stopAnimation;
 -(void)drawView;
 -(void)switchModel:(int)index;
--(void)switchSound:(int)inde;
+-(void)switchSound:(int)index;
 
 @end

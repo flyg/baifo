@@ -62,10 +62,9 @@
 {
     SoundDescriptionViewController *soundDescriptionViewController = [[SoundDescriptionViewController alloc]initWithNibName:@"SoundDescriptionView_iPhone" bundle:nil];
     [allSoundDescriptionViewControllers setObject:soundDescriptionViewController forKey:[NSNumber numberWithInt:indexPath.row]];
-    Sound*sound = [SoundManager getSound:indexPath.row];
     // initialize the view
     soundDescriptionViewController.view;
-    [soundDescriptionViewController loadSound:sound index:indexPath.row];
+    [soundDescriptionViewController loadSound:indexPath.row];
     return (UITableViewCell*)soundDescriptionViewController.view;
 }
 
@@ -101,7 +100,6 @@
                 SoundDescriptionViewController*soundDescriptionViewcontroller = [allSoundDescriptionViewControllers objectForKey:[NSNumber numberWithInt:i]];
                 [soundDescriptionViewcontroller refreshSelection:i == soundIndexCurrent];
             }
-            //self gotoPage:modelIndexCurrent];
         });
     });
 }

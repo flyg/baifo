@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Model.h"
+#import "GLGravityView.h"
+
 @interface FoDescriptionViewController : UIViewController
 {
     @public
@@ -16,7 +18,9 @@
 @property (retain, nonatomic) IBOutlet UIImageView *imgScreenShot;
 @property (retain, nonatomic) IBOutlet UILabel *lblName;
 @property (retain, nonatomic) IBOutlet UILabel *lblDescription;
+@property (retain, nonatomic) IBOutlet GLGravityView *glView;
 
-- (void) loadModel:(Model*)fo;
-
+- (void) loadModel:(int)index;
+- (void) startAnimation;
+- (void) stopAnimation;
 @end

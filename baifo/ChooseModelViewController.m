@@ -99,7 +99,7 @@
         int modelIndexCurrent = [BFAppData modelIndexCurrent];
         dispatch_async(dispatch_get_main_queue(), ^
         {
-            [self gotoPage:modelIndexCurrent];
+            [self setPage:modelIndexCurrent];
         });
     });
 }
@@ -115,16 +115,13 @@
     FoDescriptionViewController *stepViewController = [viewControllers objectAtIndex:page];
     if ((NSNull *)stepViewController == [NSNull null])
     {
-        Model *currentModel = [ModelManager getModel:page];
-        if(nil != currentModel)
-        {
-            FoDescriptionViewController *foDescriptionViewController = [[FoDescriptionViewController alloc]initWithNibName:@"FoDescriptionView_iPhone" bundle:nil];
-            stepViewController = foDescriptionViewController;
-            // initialize the view
-            stepViewController.view;
-            [foDescriptionViewController loadModel:currentModel];
-            [viewControllers replaceObjectAtIndex:page withObject:stepViewController];
-        }
+        FoDescriptionViewController *foDescriptionViewController = [[FoDescriptionViewController alloc]initWithNibName:@"FoDescriptionView_iPhone" bundle:nil];
+        stepViewController = foDescriptionViewController;
+        [viewControllers setObject:stepViewController atIndexedSubscript:page];
+        // initialize the view
+        stepViewController.view;
+        [foDescriptionViewController loadModel:page];
+        [foDescriptionViewController startAnimation];
     }
     
     // add the controller's view to the scroll view
@@ -155,7 +152,9 @@
     CGPoint point;
     point.x = page * scrollView.frame.size.width;
     point.y = 0;
+    //[self stopAnimation];
     [scrollView setContentOffset:point animated:true];
+    //[self startAnimation];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender
@@ -166,6 +165,22 @@
     [self setPage:page];
 }
 
+- (IBAction)changePage:(id)sender
+{
+    int page = pageControl.currentPage;
+	
+    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
+    [self loadScrollViewWithPage:page - 1];
+    [self loadScrollViewWithPage:page];
+    [self loadScrollViewWithPage:page + 1];
+    
+	// update the scroll view to the appropriate page
+    CGRect frame = scrollView.frame;
+    frame.origin.x = frame.size.width * page;
+    frame.origin.y = 0;
+    [scrollView scrollRectToVisible:frame animated:YES];
+}
+
 - (void)applySelection:(int)selection
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -173,6 +188,7 @@
     {
         [BFAppData setModelIndexCurrent:selection];
     });
+    [self stopAnimation];
     [ViewSwitcher switchToBFView:selection soundIndex:-1];
 }
 
@@ -214,6 +230,24 @@
     if(btnSelect.enabled)
     {
         [self applySelection:pageControl.currentPage];
+    }
+}
+
+- (void)startAnimation
+{
+    for(int i=0; i<[ModelManager modelIndexMax];i++)
+    {
+        FoDescriptionViewController *foDescriptionViewcontroller = [viewControllers objectAtIndex:i];
+        [foDescriptionViewcontroller startAnimation];
+    }
+}
+
+- (void)stopAnimation
+{
+    for(int i=0; i<[ModelManager modelIndexMax];i++)
+    {
+        FoDescriptionViewController *foDescriptionViewcontroller = [viewControllers objectAtIndex:i];
+        [foDescriptionViewcontroller stopAnimation];
     }
 }
 

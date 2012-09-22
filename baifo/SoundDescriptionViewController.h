@@ -19,7 +19,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnRecord;
 @property (retain, nonatomic) IBOutlet UILabel *lblName;
 
-- (void) loadSound:(Sound*)sound index:(int)index;
+- (void) loadSound:(int)index;
 - (IBAction)btnPlayTouched:(id)sender;
 - (IBAction)btnBackgroundTouched:(id)sender;
 - (void) refreshSelection:(BOOL)selected;

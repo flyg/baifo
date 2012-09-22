@@ -251,8 +251,6 @@
 				E279F9C515E8D5E600B0C26D /* BFViewController_iPhone.xib */,
 				E279F9C215E8D5E600B0C26D /* BFViewController.h */,
 				E279F9C315E8D5E600B0C26D /* BFViewController.m */,
-				E279F9D115E8D73900B0C26D /* GLGravityView.h */,
-				E279F9D215E8D73900B0C26D /* GLGravityView.m */,
 			);
 			name = MainPage;
 			sourceTree = "<group>";
@@ -341,6 +339,8 @@
 				E26918FC160CAE9600495661 /* MainPage */,
 				E2C3772916024199006A6840 /* OM */,
 				E295E3AF15F4DC330021E5EB /* Resources */,
+				E279F9D115E8D73900B0C26D /* GLGravityView.h */,
+				E279F9D215E8D73900B0C26D /* GLGravityView.m */,
 				E29957CA15F3CDCF001C4E50 /* ViewSwitcher.h */,
 				E29957CB15F3CDCF001C4E50 /* ViewSwitcher.m */,
 				E279F9D315E8D73900B0C26D /* MotionDetection.h */,

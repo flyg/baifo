@@ -7,6 +7,7 @@
 //
 
 #import "FoDescriptionViewController.h"
+#import "ModelManager.h"
 
 @interface FoDescriptionViewController ()
 
@@ -16,6 +17,7 @@
 @synthesize imgScreenShot;
 @synthesize lblName;
 @synthesize lblDescription;
+@synthesize glView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +39,7 @@
     [self setImgScreenShot:nil];
     [self setLblName:nil];
     [self setLblDescription:nil];
+    [self setGlView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -46,8 +49,9 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void) loadModel:(Model*)fo
+- (void) loadModel:(int)index
 {
+    Model*fo=[ModelManager getModel:index];
     self->model = fo;
     lblName.text = fo->name;
     lblDescription.text = fo->description;
@@ -65,12 +69,22 @@
         lblDescription.alpha = 1;
         imgScreenShot.alpha = 1;
     }
+    [glView switchModel:index];
 }
 
 - (void)dealloc {
     [imgScreenShot release];
     [lblName release];
     [lblDescription release];
+    [glView release];
     [super dealloc];
+}
+- (void) startAnimation
+{
+    [glView startAnimation:VIEW_MODE_CHOOSEMODEL];
+}
+- (void) stopAnimation
+{
+    [glView stopAnimation];
 }
 @end

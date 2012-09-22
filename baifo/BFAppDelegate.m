@@ -78,19 +78,5 @@
     }
 }
 
-- (void)accelerometer:(	UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration*)acceleration
-{
-	UIAccelerationValue x=acceleration.x;
-    UIAccelerationValue y=acceleration.y;
-    UIAccelerationValue z=acceleration.z;
-    
-    //Use a basic low-pass filter to only keep the gravity in the accelerometer values
-	accel[0] = x * kFilteringFactor + accel[0] * (1.0 - kFilteringFactor);
-	accel[1] = y * kFilteringFactor + accel[1] * (1.0 - kFilteringFactor);
-	accel[2] = z * kFilteringFactor + accel[2] * (1.0 - kFilteringFactor);
-	
-	//Update the accelerometer values for the view
-	[glView setAccel:accel];
-}
 
 @end

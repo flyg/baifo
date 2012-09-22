@@ -9,6 +9,7 @@
 #import "SoundDescriptionViewController.h"
 #import "BFAppData.h"
 #import "ViewSwitcher.h"
+#import "SoundManager.h"
 
 @interface SoundDescriptionViewController ()
 
@@ -56,8 +57,9 @@
     [super dealloc];
 }
 
-- (void)loadSound:(Sound *)sound index:(int)index
+- (void)loadSound:(int)index
 {
+    Sound*sound=[SoundManager getSound:index];
     self->sound = sound;
     lblName.text = sound->free?sound->name:@"自定义声音未解锁";
     lblName.enabled = sound->free;

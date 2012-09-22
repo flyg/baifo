@@ -23,5 +23,7 @@
 - (IBAction)btnLeftTouched:(id)sender;
 - (IBAction)btnRightTouched:(id)sender;
 - (void)switchToCurrentModel;
+- (void)startAnimation;
+- (void)stopAnimation;
 
 @end
