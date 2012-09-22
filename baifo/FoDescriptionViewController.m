@@ -14,10 +14,10 @@
 @end
 
 @implementation FoDescriptionViewController
-@synthesize imgScreenShot;
 @synthesize lblName;
 @synthesize lblDescription;
 @synthesize glView;
+@synthesize imgMask;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,10 +36,10 @@
 
 - (void)viewDidUnload
 {
-    [self setImgScreenShot:nil];
     [self setLblName:nil];
     [self setLblDescription:nil];
     [self setGlView:nil];
+    [self setImgMask:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -56,27 +56,26 @@
     lblName.text = fo->name;
     lblDescription.text = fo->description;
     UIImage * image = [UIImage imageNamed:fo->screenShot];
-    imgScreenShot.image = image;
     if(!fo->free)
     {
-        lblName.alpha = 0.5;
-        lblDescription.alpha = 0.5;
-        imgScreenShot.alpha = 0.5;
+        //lblName.alpha = 0.5;
+        //lblDescription.alpha = 0.5;
+        imgMask.hidden=false;
     }
     else
     {
-        lblName.alpha = 1;
-        lblDescription.alpha = 1;
-        imgScreenShot.alpha = 1;
+        //lblName.alpha = 1;
+        //lblDescription.alpha = 1;
+        imgMask.hidden=true;
     }
     [glView switchModel:index];
 }
 
 - (void)dealloc {
-    [imgScreenShot release];
     [lblName release];
     [lblDescription release];
     [glView release];
+    [imgMask release];
     [super dealloc];
 }
 - (void) startAnimation

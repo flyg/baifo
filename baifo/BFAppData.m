@@ -7,6 +7,7 @@
 //
 
 #import "BFAppData.h"
+#import "SoundManager.h"
 
 @implementation BFAppData
 NSUserDefaults* g_userDefaults;
@@ -42,6 +43,15 @@ NSUserDefaults* g_userDefaults;
 +(void)setSoundIndexCurrent:(int)soundIndexCurrent
 {
     [g_userDefaults setObject:[NSNumber numberWithInt:soundIndexCurrent] forKey:@"sound_index_current"];
+}
++(int)recordedUserSoundIndexMax
+{
+    NSNumber *value = [g_userDefaults objectForKey:@"recordedUserSound_index_max"];
+    return (nil == value) ? [SoundManager builtinSoundIndexMax] : value.intValue;
+}
++(void)setRecordedUserSoundIndexMax:(int)recordedUserSoundIndexMax
+{
+    [g_userDefaults setObject:[NSNumber numberWithInt:recordedUserSoundIndexMax] forKey:@"recordedUserSound_index_max"];
 }
 
 @end

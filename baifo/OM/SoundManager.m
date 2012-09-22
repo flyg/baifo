@@ -62,6 +62,12 @@ Sound*sounds[MAX_BUILTIN_SOUND+MAX_USER_SOUND];
 {
     return MAX_BUILTIN_SOUND+MAX_USER_SOUND;
 }
+
++(int) builtinSoundIndexMax
+{
+    return MAX_BUILTIN_SOUND;
+}
+
 +(void) initSounds
 {
     [self initBuiltInSounds];

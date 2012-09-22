@@ -15,10 +15,11 @@
     @public
     Model*model;
 }
-@property (retain, nonatomic) IBOutlet UIImageView *imgScreenShot;
+
 @property (retain, nonatomic) IBOutlet UILabel *lblName;
 @property (retain, nonatomic) IBOutlet UILabel *lblDescription;
 @property (retain, nonatomic) IBOutlet GLGravityView *glView;
+@property (retain, nonatomic) IBOutlet UIImageView *imgMask;
 
 - (void) loadModel:(int)index;
 - (void) startAnimation;

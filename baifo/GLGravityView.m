@@ -47,7 +47,8 @@
 	
 		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
 	
-		if (!context || ![EAGLContext setCurrentContext:context]) {
+		if (!context || ![EAGLContext setCurrentContext:context])
+        {
 			[self release];
 			return nil;
 		}

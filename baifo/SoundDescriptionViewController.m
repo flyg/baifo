@@ -61,11 +61,34 @@
 {
     Sound*sound=[SoundManager getSound:index];
     self->sound = sound;
-    lblName.text = sound->free?sound->name:@"自定义声音未解锁";
-    lblName.enabled = sound->free;
-    btnPlay.enabled = sound->free;
-    btnRecord.hidden = sound->free;
-    btnRecord.enabled = sound->free;
+    int builinSoundIndexMax = [SoundManager builtinSoundIndexMax];
+    int recordedUserSoundIndexMax = [BFAppData recordedUserSoundIndexMax];
+    if(index < builinSoundIndexMax)
+    {
+        lblName.text = sound->name;
+        lblName.enabled = true;
+        btnPlay.enabled = true;
+        btnRecord.hidden = true;
+    }
+    else if(index < recordedUserSoundIndexMax)
+    {
+        lblName.text = @"自定义声音";
+        lblName.enabled = true;
+        btnPlay.enabled = true;
+        btnRecord.hidden = true;
+    }
+    else if(index == recordedUserSoundIndexMax)
+    {
+        lblName.text = @"按住录音";
+        lblName.enabled = true;
+        btnPlay.hidden = true;
+    }
+    else
+    {
+        lblName.hidden = true;
+        btnPlay.hidden = true;
+        btnRecord.hidden = true;
+    }
     self->index = index;
 }
 
@@ -76,15 +99,18 @@
 
 - (IBAction)btnBackgroundTouched:(id)sender
 {
-    if(self->sound->free)
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^
     {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(queue, ^
+        if(self->index < [BFAppData recordedUserSoundIndexMax])
         {
             [BFAppData setSoundIndexCurrent:self->index];
-        });
-        [ViewSwitcher switchToBFView:-1 soundIndex:self->index];
-    }
+            dispatch_async(dispatch_get_main_queue(), ^
+            {
+                [ViewSwitcher switchToBFView:-1 soundIndex:self->index];
+            });
+        }
+    });
 }
 
 - (void) refreshSelection:(BOOL)selected

@@ -10,6 +10,7 @@
 #import "Sound.h"
 @interface SoundManager : NSObject
 +(int) soundIndexMax;
++(int) builtinSoundIndexMax;
 +(void) initSounds;
 +(Sound*) getSound:(int)index;
 @end
