@@ -10,6 +10,7 @@
 #import "BFAppData.h"
 #import "ViewSwitcher.h"
 #import "SoundManager.h"
+#import "UserSound.h"
 
 @interface SoundDescriptionViewController ()
 
@@ -62,32 +63,25 @@
     Sound*sound=[SoundManager getSound:index];
     self->sound = sound;
     int builinSoundIndexMax = [SoundManager builtinSoundIndexMax];
-    int recordedUserSoundIndexMax = [BFAppData recordedUserSoundIndexMax];
-    if(index < builinSoundIndexMax)
+    if(sound->free)
     {
         lblName.text = sound->name;
         lblName.enabled = true;
         btnPlay.enabled = true;
         btnRecord.hidden = true;
     }
-    else if(index < recordedUserSoundIndexMax)
+    else if(((UserSound*)sound)->recorded)
     {
         lblName.text = @"自定义声音";
         lblName.enabled = true;
         btnPlay.enabled = true;
         btnRecord.hidden = true;
     }
-    else if(index == recordedUserSoundIndexMax)
+    else
     {
         lblName.text = @"按住录音";
         lblName.enabled = true;
         btnPlay.hidden = true;
-    }
-    else
-    {
-        lblName.hidden = true;
-        btnPlay.hidden = true;
-        btnRecord.hidden = true;
     }
     self->index = index;
 }
@@ -102,7 +96,7 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^
     {
-        if(self->index < [BFAppData recordedUserSoundIndexMax])
+        if(self->index < [SoundManager soundIndexMax])
         {
             [BFAppData setSoundIndexCurrent:self->index];
             dispatch_async(dispatch_get_main_queue(), ^

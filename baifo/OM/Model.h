@@ -20,7 +20,6 @@
     int cIndexes;
     bool free;
     const int count;
-    NSString *screenShot;
 }
 
 @end

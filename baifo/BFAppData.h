@@ -16,6 +16,9 @@
 +(void)setModelIndexCurrent:(int)modelIndexCurrent;
 +(int)soundIndexCurrent;
 +(void)setSoundIndexCurrent:(int)soundIndexCurrent;
-+(int)recordedUserSoundIndexMax;
-+(void)setRecordedUserSoundIndexMax:(int)recordedUserSoundIndexMax;
++(int)userSoundCount;
++(void)setUserSoundCount:(int)userSoundCount;
++(NSString*)userSoundMediaFileName:(int)index;
++(void)setUserSoundMediaFileName:(NSString*)mediaFileName for:(int)index;
+
 @end

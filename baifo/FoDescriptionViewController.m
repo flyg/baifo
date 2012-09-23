@@ -55,7 +55,6 @@
     self->model = fo;
     lblName.text = fo->name;
     lblDescription.text = fo->description;
-    UIImage * image = [UIImage imageNamed:fo->screenShot];
     if(!fo->free)
     {
         //lblName.alpha = 0.5;

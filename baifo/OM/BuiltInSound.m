@@ -7,19 +7,15 @@
 //
 
 #import "BuiltInSound.h"
-#import <AVFoundation/AVAudioPlayer.h>
 
 @implementation BuiltInSound
-
--(void)play
+- (id)init
 {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^
+    self = [super init];
+    if (self)
     {
-        NSString *path = [[NSBundle mainBundle] pathForResource:self->resource ofType:self->type];
-        AVAudioPlayer* theAudio=[[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] error:NULL];
-       [theAudio play];
-    });
+        self->free = true;
+    }
+    return self;
 }
-
 @end

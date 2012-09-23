@@ -13,6 +13,8 @@
 @public
     NSString *name;
     NSString *description;
+    NSString *resource;
+    NSString *type;
     bool free;
 }
 -(void)play;

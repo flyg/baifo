@@ -11,9 +11,33 @@
 
 @implementation UserSound
 
--(void)play
+- (id)init
 {
+    self = [super init];
+    if (self)
+    {
+        self->type = @"caf";
+    }
+    return self;
+}
 
+-(void) beginRecord
+{
+    if(!self->recorded)
+    {
+        CFUUIDRef theUUID = CFUUIDCreate(NULL);
+        CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+        self->resource = [(NSString *)string retain];
+        CFRelease(theUUID);
+    }
+}
+
+-(void) endRecord
+{
+    if(!self->recorded)
+    {
+        self->recorded = true;
+    }
 }
 
 @end

@@ -12,10 +12,10 @@
 @interface UserSound : Sound
 {
 @public
-    NSString *resource;
-    NSString *type;
     bool recorded;
 }
--(void) play;
+
+-(void) beginRecord;
+-(void) endRecord;
 
 @end

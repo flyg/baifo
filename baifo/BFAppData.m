@@ -44,14 +44,22 @@ NSUserDefaults* g_userDefaults;
 {
     [g_userDefaults setObject:[NSNumber numberWithInt:soundIndexCurrent] forKey:@"sound_index_current"];
 }
-+(int)recordedUserSoundIndexMax
++(int)userSoundCount
 {
-    NSNumber *value = [g_userDefaults objectForKey:@"recordedUserSound_index_max"];
-    return (nil == value) ? [SoundManager builtinSoundIndexMax] : value.intValue;
+    NSNumber *value = [g_userDefaults objectForKey:@"usersound_count"];
+    return (nil == value) ? 0 : value.intValue;
 }
-+(void)setRecordedUserSoundIndexMax:(int)recordedUserSoundIndexMax
++(void)setUserSoundCount:(int)userSoundCount
 {
-    [g_userDefaults setObject:[NSNumber numberWithInt:recordedUserSoundIndexMax] forKey:@"recordedUserSound_index_max"];
+    [g_userDefaults setObject:[NSNumber numberWithInt:userSoundCount] forKey:@"usersound_count"];
+}
++(NSString*)userSoundMediaFileName:(int)index
+{
+    return [g_userDefaults objectForKey:[NSString stringWithFormat:@"usersound_file_%d", index]];
+}
++(void)setUserSoundMediaFileName:(NSString*)mediaFileName for:(int)index
+{
+    [g_userDefaults setObject:mediaFileName forKey:[NSString stringWithFormat:@"usersound_file_%d", index]];
 }
 
 @end

@@ -10,11 +10,5 @@
 #import "Sound.h"
 
 @interface BuiltInSound : Sound
-{
-@public
-    NSString *resource;
-    NSString *type;
-}
--(void) play;
 
 @end

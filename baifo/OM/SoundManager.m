@@ -9,15 +9,17 @@
 #import "SoundManager.h"
 #import "BuiltInSound.h"
 #import "UserSound.h"
+#import "BFAppData.h"
 
 const int MAX_BUILTIN_SOUND = 2;
 const int MAX_USER_SOUND = 3;
+int recordedUserSoundCount = 0;
 
 @implementation SoundManager
 
 Sound*sounds[MAX_BUILTIN_SOUND+MAX_USER_SOUND];
 
-+(UserSound*) initUserSound:(int)index
++(UserSound*) initUnrecordedUserSound
 {
     UserSound *sound = [[UserSound alloc]init];
     return sound;
@@ -25,9 +27,22 @@ Sound*sounds[MAX_BUILTIN_SOUND+MAX_USER_SOUND];
 
 +(void) initUserSounds
 {
-    sounds[MAX_BUILTIN_SOUND+0] = [self initUserSound:0];
-    sounds[MAX_BUILTIN_SOUND+1] = [self initUserSound:1];
-    sounds[MAX_BUILTIN_SOUND+2] = [self initUserSound:2];
+    for (int i=0;i<recordedUserSoundCount;i++)
+    {
+        UserSound *sound = [[UserSound alloc]init];
+        sound->recorded = true;
+        sound->resource = [BFAppData userSoundMediaFileName:i];
+        sounds[MAX_BUILTIN_SOUND+i]=sound;
+    }
+    [self addUnrecordedUserSound];
+}
+
++(void) addUnrecordedUserSound
+{    
+    if (recordedUserSoundCount < MAX_USER_SOUND)
+    {
+        sounds[MAX_BUILTIN_SOUND+recordedUserSoundCount] = [self initUnrecordedUserSound];
+    }
 }
 
 +(BuiltInSound*) initBuiltInSound1
@@ -37,7 +52,6 @@ Sound*sounds[MAX_BUILTIN_SOUND+MAX_USER_SOUND];
     sound->description = @"阿弥陀佛的说明";
     sound->resource = @"emtf";
     sound->type = @"wav";
-    sound->free = true;
     return sound;
 }
 
@@ -48,7 +62,6 @@ Sound*sounds[MAX_BUILTIN_SOUND+MAX_USER_SOUND];
     sound->description = @"弹簧的说明";
     sound->resource = @"spring";
     sound->type = @"mp3";
-    sound->free = true;
     return sound;
 }
 
@@ -60,7 +73,7 @@ Sound*sounds[MAX_BUILTIN_SOUND+MAX_USER_SOUND];
 
 +(int) soundIndexMax
 {
-    return MAX_BUILTIN_SOUND+MAX_USER_SOUND;
+    return MAX_BUILTIN_SOUND+recordedUserSoundCount+1;
 }
 
 +(int) builtinSoundIndexMax
@@ -70,12 +83,13 @@ Sound*sounds[MAX_BUILTIN_SOUND+MAX_USER_SOUND];
 
 +(void) initSounds
 {
+    recordedUserSoundCount = [BFAppData userSoundCount];
     [self initBuiltInSounds];
     [self initUserSounds];
 }
 +(Sound*) getSound:(int)index
 {
-    if (index<0 || index>=MAX_BUILTIN_SOUND+MAX_USER_SOUND)
+    if (index<0 || index>=MAX_BUILTIN_SOUND+recordedUserSoundCount+1)
     {
         return nil;
     }

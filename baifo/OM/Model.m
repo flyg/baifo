@@ -10,5 +10,15 @@
 
 
 @implementation Model
-
+- (void)dealloc
+{
+    if(nil!=self->name)
+    {
+        [self->name release];
+    }
+    if(nil!=self->description)
+    {
+        [self->description release];
+    }
+}
 @end
